@@ -19,6 +19,7 @@ public class Cube : MonoBehaviour {
 	void Update () {
 
         test.Move(gameObject.transform);
+        test.Rotate(gameObject.transform);
 
 	}
 }
