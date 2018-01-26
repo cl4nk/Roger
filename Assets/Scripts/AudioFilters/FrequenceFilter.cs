@@ -2,7 +2,6 @@
 
 [RequireComponent(typeof(AudioLowPassFilter))]
 [RequireComponent(typeof(AudioHighPassFilter))]
-[RequireComponent(typeof(AudioListener))]
 public class FrequenceFilter : MonoBehaviour
 {
     [Range(10.0f, 22000.0f)]
