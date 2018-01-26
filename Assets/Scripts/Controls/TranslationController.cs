@@ -19,10 +19,6 @@ public class TranslationController : MonoBehaviour {
 
     #endregion
 
-    void Start () {
-		
-	}
-	
 	void Update ()
     {
         Move();
@@ -33,7 +29,6 @@ public class TranslationController : MonoBehaviour {
         float verticalTranslation = (Input.GetAxis(verticalTranslationAxis) * moveSpeed) * Time.deltaTime;
         float horizontalTranslation = (Input.GetAxis(horizontalTranslationAxis) * moveSpeed) * Time.deltaTime;
 
-        transform.Translate(horizontalTranslation, 0, 0);
-        transform.Translate(0, verticalTranslation, 0);
+        transform.Translate(horizontalTranslation, verticalTranslation, 0);
     }
 }
