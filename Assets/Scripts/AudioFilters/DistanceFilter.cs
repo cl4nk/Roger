@@ -3,5 +3,5 @@
 [RequireComponent(typeof(AudioListener))]
 public class DistanceFilter : MonoBehaviour
 {
-    public float Depth = 1.0f;
+    public float MaxDistance = 5.0f;
 }
