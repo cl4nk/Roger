@@ -14,9 +14,6 @@ public class TranslationController : MonoBehaviour {
     [SerializeField]
     private float moveSpeed = 5f;
 
-    [SerializeField]
-    private Vector3 direction = Vector3.zero;
-
     #endregion
 
 	void Update ()
