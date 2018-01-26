@@ -1,9 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class ArrivalZone : MonoBehaviour
 {
-    public static event Action<ArrivalZone> OnArriveEvent;
+    public static event UnityAction<ArrivalZone> StaticOnArriveEvent;
+    public event UnityAction OnArriveEvent;
 
     public bool OnlyOnce = false;
 
@@ -12,9 +13,19 @@ public class ArrivalZone : MonoBehaviour
 
     public float AcceptanceRadius = 1.0f;
 
-    private bool AlreadyTriggered = false;
+    private bool alreadyTriggered = false;
+    public bool AlreadyTriggered
+    {
+        get { return alreadyTriggered; }
+        private set { alreadyTriggered = value; }
+    }
 
-    private bool PlayerIsInZone = false;
+    private bool playerIsInZone = false;
+    public bool PlayerIsInZone
+    {
+        get { return playerIsInZone; }
+        private set { playerIsInZone = value; }
+    }
 
     public bool CanBeTriggered
     {
@@ -42,8 +53,13 @@ public class ArrivalZone : MonoBehaviour
     {
         if (Vector3.Distance(player.position, transform.position) <= AcceptanceRadius)
         {
-            if (CanBeTriggered && OnArriveEvent != null)
-                OnArriveEvent.Invoke(this);
+            if (CanBeTriggered)
+            {
+                if (StaticOnArriveEvent != null)
+                    StaticOnArriveEvent.Invoke(this);
+                if (OnArriveEvent != null)
+                    OnArriveEvent.Invoke();
+            }
         }
         else
         {
@@ -51,10 +67,8 @@ public class ArrivalZone : MonoBehaviour
         }
     }
 
-    public void OnArrive(ArrivalZone zone)
+    public void OnArrive()
     {
-        if (zone == this)
-            AlreadyTriggered = true;
+        AlreadyTriggered = true;
     }
-
 }

@@ -1,10 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCharacter : MonoBehaviour, IDamageable
 {
-    public event Action OnDeathEvent;
-    public event Action<float> OnDamageTakenEvent;
+    public event UnityAction OnDeathEvent;
+    public event UnityAction<float> OnDamageTakenEvent;
 
     [SerializeField]
     private float maxHP = 100.0f;
