@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerCharacter : MonoBehaviour, IDamageable
+public class Character : MonoBehaviour, IDamageable
 {
     public UnityEvent OnDeathEvent;
     public UnityEvent<float> OnDamageTakenEvent;
@@ -13,6 +13,7 @@ public class PlayerCharacter : MonoBehaviour, IDamageable
         get { return maxHP; }
     }
 
+    [SerializeField]
     private float currentHP = 0.0f;
     public float CurrentHP
     {
