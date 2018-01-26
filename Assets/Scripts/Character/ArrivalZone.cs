@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class ArrivalZone : MonoBehaviour
 {
-    public static event UnityAction<ArrivalZone> StaticOnArriveEvent;
-    public event UnityAction OnArriveEvent;
+    public UnityEvent<ArrivalZone> StaticOnArriveEvent;
+    public UnityEvent OnArriveEvent;
 
     public bool OnlyOnce = false;
 
@@ -40,13 +40,13 @@ public class ArrivalZone : MonoBehaviour
     public void OnEnable()
     {
         AlreadyTriggered = true;
-        OnArriveEvent += OnArrive;
+        OnArriveEvent.AddListener(OnArrive);
     }
 
     public void OnDisable()
     {
         AlreadyTriggered = false;
-        OnArriveEvent -= OnArrive;
+        OnArriveEvent.AddListener(OnArrive);
     }
 
     public void Update()

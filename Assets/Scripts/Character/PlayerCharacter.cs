@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class PlayerCharacter : MonoBehaviour, IDamageable
 {
-    public event UnityAction OnDeathEvent;
-    public event UnityAction<float> OnDamageTakenEvent;
+    public UnityEvent OnDeathEvent;
+    public UnityEvent<float> OnDamageTakenEvent;
 
     [SerializeField]
     private float maxHP = 100.0f;
@@ -24,7 +24,7 @@ public class PlayerCharacter : MonoBehaviour, IDamageable
             {
                 currentHP = 0.0f;
                 if (OnDeathEvent != null)
-                    OnDeathEvent();
+                    OnDeathEvent.Invoke();
             }
         }
     }
@@ -38,6 +38,6 @@ public class PlayerCharacter : MonoBehaviour, IDamageable
     {
         CurrentHP -= damage;
         if (OnDamageTakenEvent != null)
-            OnDamageTakenEvent(CurrentHP);
+            OnDamageTakenEvent.Invoke(CurrentHP);
     }
 }

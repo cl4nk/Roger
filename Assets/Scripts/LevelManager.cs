@@ -3,18 +3,18 @@ using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
-    public UnityAction OnArrive;
+    public UnityEvent OnArrive;
 
     [SerializeField]
     private ArrivalZone arrivalZone;
 
     public void OnEnable()
     {
-        arrivalZone.OnArriveEvent += OnArrive.Invoke;
+        arrivalZone.OnArriveEvent.AddListener(OnArrive.Invoke);
     }
 
     public void OnDisable()
     {
-        arrivalZone.OnArriveEvent -= OnArrive.Invoke;
+        arrivalZone.OnArriveEvent.RemoveListener(OnArrive.Invoke);
     }
 }
