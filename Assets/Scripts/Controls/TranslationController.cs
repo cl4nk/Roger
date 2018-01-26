@@ -16,14 +16,14 @@ public class TranslationController : MonoBehaviour {
 
 	void Update ()
     {
-        Move();
+        Translation();
 	}
 
-    public void Move()
+    public void Translation()
     {
         float verticalTranslation = (Input.GetAxis(verticalTranslationAxis) * moveSpeed) * Time.deltaTime;
         float horizontalTranslation = (Input.GetAxis(horizontalTranslationAxis) * moveSpeed) * Time.deltaTime;
 
-        transform.Translate(horizontalTranslation, verticalTranslation, 0);
+        transform.Translate(horizontalTranslation, 0, verticalTranslation);
     }
 }
