@@ -4284,7 +4284,7 @@ Prefab:
     - target: {fileID: 114765458172269492, guid: 370372884380cc64aad678773028e87e,
         type: 2}
       propertyPath: pathPoints.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224043238850151030, guid: 370372884380cc64aad678773028e87e,
         type: 2}
@@ -4423,7 +4423,7 @@ Prefab:
     - target: {fileID: 114765458172269492, guid: 370372884380cc64aad678773028e87e,
         type: 2}
       propertyPath: pathPoints.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224043238850151030, guid: 370372884380cc64aad678773028e87e,
         type: 2}
@@ -5639,7 +5639,7 @@ Prefab:
     - target: {fileID: 114765458172269492, guid: 370372884380cc64aad678773028e87e,
         type: 2}
       propertyPath: pathPoints.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224043238850151030, guid: 370372884380cc64aad678773028e87e,
         type: 2}
@@ -5861,7 +5861,7 @@ Prefab:
     - target: {fileID: 114765458172269492, guid: 370372884380cc64aad678773028e87e,
         type: 2}
       propertyPath: pathPoints.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224043238850151030, guid: 370372884380cc64aad678773028e87e,
         type: 2}
@@ -6544,7 +6544,7 @@ Prefab:
     - target: {fileID: 114765458172269492, guid: 370372884380cc64aad678773028e87e,
         type: 2}
       propertyPath: pathPoints.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224043238850151030, guid: 370372884380cc64aad678773028e87e,
         type: 2}
@@ -6928,7 +6928,7 @@ Prefab:
     - target: {fileID: 114765458172269492, guid: 370372884380cc64aad678773028e87e,
         type: 2}
       propertyPath: pathPoints.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224043238850151030, guid: 370372884380cc64aad678773028e87e,
         type: 2}
@@ -7348,7 +7348,7 @@ Prefab:
     - target: {fileID: 114765458172269492, guid: 370372884380cc64aad678773028e87e,
         type: 2}
       propertyPath: pathPoints.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224043238850151030, guid: 370372884380cc64aad678773028e87e,
         type: 2}
