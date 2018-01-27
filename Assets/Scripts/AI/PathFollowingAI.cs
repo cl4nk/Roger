@@ -50,7 +50,6 @@ public class PathFollowingAI : MonoBehaviour
         transform.position += (direction * Time.deltaTime * speed);
 
         direction = new Vector3(direction.y, -direction.x);
-        //transform.right = direction;
         transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(direction, Vector3.forward), rotationSpeed * Time.deltaTime);
 
         if (HasReachDestination())
