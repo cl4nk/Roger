@@ -16,13 +16,13 @@ public class PlayerCamera : MonoBehaviour {
 
     void Start ()
     {
-	    transform.rotation = Quaternion.Euler(new Vector3(90 - angle, 0, 0));
+	    transform.rotation = Quaternion.Euler(new Vector3(angle, 0, 0));
 	    transform.position = playerTransf.position - transform.forward * cameraDistance;
     }
 
     void Update ()
     {
-        transform.rotation = Quaternion.Euler(new Vector3(90 - angle, 0, 0));
+        transform.rotation = Quaternion.Euler(new Vector3(angle, 0, 0));
         Vector3 targetPosition = playerTransf.position - transform.forward * cameraDistance;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }

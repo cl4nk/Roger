@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TranslationController : MonoBehaviour {
 
@@ -14,21 +12,18 @@ public class TranslationController : MonoBehaviour {
     [SerializeField]
     private float moveSpeed = 5f;
 
-    [SerializeField]
-    private Vector3 direction = Vector3.zero;
-
     #endregion
 
 	void Update ()
     {
-        Move();
+        Translation();
 	}
 
-    public void Move()
+    public void Translation()
     {
         float verticalTranslation = (Input.GetAxis(verticalTranslationAxis) * moveSpeed) * Time.deltaTime;
         float horizontalTranslation = (Input.GetAxis(horizontalTranslationAxis) * moveSpeed) * Time.deltaTime;
 
-        transform.Translate(horizontalTranslation, verticalTranslation, 0);
+        transform.Translate(horizontalTranslation, 0, verticalTranslation);
     }
 }
