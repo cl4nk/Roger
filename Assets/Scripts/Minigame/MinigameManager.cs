@@ -39,13 +39,18 @@ public class MinigameManager : Singleton<MinigameManager> {
     public UnityEvent OnBadAnswer;
 
     public int messageToStart;
+    public bool Debug;
 
     void Start()
     {
         sentenceWord = new List<string>();
 
+        if (Debug)
+        {
+            LoadMessages();
+            StartMessage(0);
 
-
+        }
     }
 
     void AddWordButton(string word)
