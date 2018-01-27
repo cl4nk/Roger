@@ -1,9 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class VisualDetection : MonoBehaviour
 {
+    public static event Action<VisualDetection, Transform> StaticOnPlayerDetected;
+
+    public UnityEvent<Transform> OnPlayerDetected;
+
     [Range(0, 360)]
     public float Angle = 15.0f;
 
@@ -11,10 +16,6 @@ public class VisualDetection : MonoBehaviour
     public float Distance = 5.0f;
 
     public Transform player;
-
-    public UnityEvent OnPlayerDetected;
-
-    public float angle;
 
     public void Update()
     {
@@ -24,12 +25,14 @@ public class VisualDetection : MonoBehaviour
 
 
         Vector3 directionToPlayer = player.position - transform.position;
-        angle = Vector3.Angle(transform.right, directionToPlayer.normalized);
+        float angle = Vector3.Angle(transform.right, directionToPlayer.normalized);
 
         if (angle > Angle)
             return;
 
-        OnPlayerDetected.Invoke();
+        if (StaticOnPlayerDetected != null)
+            StaticOnPlayerDetected(this, player);
+        OnPlayerDetected.Invoke(player);
     }
 
     public void OnDrawGizmos()

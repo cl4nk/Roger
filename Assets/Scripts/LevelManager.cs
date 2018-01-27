@@ -24,16 +24,28 @@ public class LevelManager : MonoBehaviour
     public void OnEnable()
     {
         lastCheckpoint = Player.transform.position;
+
         Player.OnDeathEvent.AddListener(RespawnPlayer);
         FinishZone.OnArriveEvent.AddListener(OnArrive.Invoke);
 
+        VisualDetection.StaticOnPlayerDetected += OnPlayerDetected;
         ArrivalZone.StaticOnArriveEvent += SaveCheckpoint;
+    }
+
+    private void OnPlayerDetected(VisualDetection finder, Transform found)
+    {
+        if (player.transform == found)
+        {
+            RespawnPlayer();
+        }
     }
 
     public void OnDisable()
     {
         ArrivalZone.StaticOnArriveEvent -= SaveCheckpoint;
+        VisualDetection.StaticOnPlayerDetected -= OnPlayerDetected;
 
+        Player.OnDeathEvent.RemoveListener(RespawnPlayer);
         FinishZone.OnArriveEvent.RemoveListener(OnArrive.Invoke);
     }
 
