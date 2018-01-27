@@ -4405,8 +4405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageToStart: 0
   toDisable:
-  - {fileID: 1898362071}
-  - {fileID: 1507518350}
+  - {fileID: 1640267212}
+  - {fileID: 194935900}
   timeToPress: 1
 --- !u!61 &207992283
 BoxCollider2D:
@@ -5588,6 +5588,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdf15e5b944b57498edeb45d121c646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1062311301 stripped
+BoxCollider2D:
+  m_PrefabParentObject: {fileID: 61054272011841370, guid: 5e382138fe6c60842b0c2104cc6faa3a,
+    type: 2}
+  m_PrefabInternal: {fileID: 433483131}
 --- !u!1 &1079637592
 GameObject:
   m_ObjectHideFlags: 0
@@ -6466,11 +6471,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1446114602}
-        m_MethodName: OnTriggerEnter
-        m_Mode: 1
+        m_MethodName: OnTriggerEnter2D
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1062311301}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1446114602}
+        m_MethodName: OnTriggerExit2D
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1062311301}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6494,6 +6510,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1446114602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446114599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d559fc36974cb74cac13eee26bbaf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageToStart: 0
+  toDisable:
+  - {fileID: 2138224707}
+  - {fileID: 1384295089}
+  timeToPress: 1
+--- !u!61 &1446114603
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446114599}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1512730947
 GameObject:
   m_ObjectHideFlags: 0
