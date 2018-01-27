@@ -14,9 +14,17 @@ public class RotationController : MonoBehaviour, ICommand
         Gizmos.DrawRay(transform.position, transform.right);
     }
 
+    public void OnCommandEnable()
+    {
+    }
+
+    public void OnCommandDisable()
+    {
+    }
+
     public void EnterInputVector(Vector2 direction)
     {
-        Vector3 forward = new Vector3(direction.x, direction.y, 0.0f);
+        Vector3 forward = new Vector3(direction.y, direction.x, 0.0f) * -1;
 
         if (forward.sqrMagnitude > 0.0f)
         {

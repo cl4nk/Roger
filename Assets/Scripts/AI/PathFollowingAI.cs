@@ -48,8 +48,9 @@ public class PathFollowingAI : MonoBehaviour
         direction.Normalize();
 
         transform.position += (direction * Time.deltaTime * speed);
-        transform.right = direction;
-        //transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(direction, Vector3.forward), rotationSpeed * Time.deltaTime);
+
+        direction = new Vector3(direction.y, -direction.x);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(direction, Vector3.forward), rotationSpeed * Time.deltaTime);
 
         if (HasReachDestination())
         {

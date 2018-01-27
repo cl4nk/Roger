@@ -68,6 +68,14 @@ public class FrequenceFilter : MonoBehaviour, ICommand
         Range = range;
     }
 
+    public void OnCommandEnable()
+    {
+    }
+
+    public void OnCommandDisable()
+    {
+    }
+
     public void EnterInputVector(Vector2 direction)
     {
         if (direction.sqrMagnitude == 0.0f)
