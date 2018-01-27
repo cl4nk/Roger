@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//[RequireComponent(typeof(NavMeshAgent))]
-public class PathFollowingAI : MonoBehaviour {
-
-    private Transform transf;
-
+public class PathFollowingAI : MonoBehaviour
+{
     [SerializeField]
     private Transform[] pathPoints;
     [SerializeField]
@@ -18,21 +15,60 @@ public class PathFollowingAI : MonoBehaviour {
     private int currentDestination = 0;
     private int increment = 1;
 
-	// Use this for initialization
-	void Start ()
+    private Vector3? TempDestination;
+
+    private NoiseDetection noiseDetection;
+
+    public void OnEnable()
     {
-        transf = transform;
-	}
-	
+        noiseDetection = GetComponent<NoiseDetection>();
+        if (noiseDetection)
+        {
+            noiseDetection.OnNoiseDetected.AddListener(SetTempDestination);
+        }
+    }
+
+    public void OnDisable()
+    {
+        if (noiseDetection)
+        {
+            noiseDetection.OnNoiseDetected.RemoveListener(SetTempDestination);
+        }
+    }
+
 	// Update is called once per frame
-	void Update ()
+	private void Update ()
     {
-        Vector3 direction = pathPoints[currentDestination].position - transf.position;
+        Vector3? target = GetTarget();
+        if (target == null)
+            return;
+
+        Vector3 direction = target.Value - transform.position;
         direction.Normalize();
 
-        transf.Translate(direction * Time.deltaTime * speed);
+        transform.Translate(direction * Time.deltaTime * speed);
 
-        if (ReachDestination())
+        if (HasReachDestination())
+        {
+            Increment();
+        }
+	}
+
+    private Vector3? GetTarget()
+    {
+        if (!TempDestination.HasValue && pathPoints.Length == 0)
+            return null;
+
+        return TempDestination.HasValue ? TempDestination.Value : pathPoints[currentDestination].position;
+    }
+
+    private void Increment()
+    {
+        if (TempDestination.HasValue)
+        {
+            TempDestination = null;
+        }
+        else
         {
             currentDestination += increment;
 
@@ -41,11 +77,27 @@ public class PathFollowingAI : MonoBehaviour {
                 increment = -increment;
             }
         }
-	}
+    }
 
-    bool ReachDestination()
+    private bool HasReachDestination()
     {
-        Vector3 groundedPoint = new Vector3(pathPoints[currentDestination].position.x, transf.position.y, pathPoints[currentDestination].position.z);
-        return Vector3.Distance(transf.position, groundedPoint) <= reachMargin;
+        Vector3? target = GetTarget();
+        if (target == null)
+            return false;
+        return Vector3.Distance(transform.position, target.Value) <= reachMargin;
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+
+    public void SetTempDestination(Vector3 position)
+    {
+        TempDestination = position;
+    }
+
+    public void OnDrawGizmos()
+    {
+        Vector3? target = GetTarget();
+        if (target == null)
+            return;
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(target.Value, reachMargin);
     }
 }
