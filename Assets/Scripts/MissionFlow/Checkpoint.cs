@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class Checkpoint : MonoBehaviour {
 
     [SerializeField]
@@ -17,38 +17,37 @@ public class Checkpoint : MonoBehaviour {
     [SerializeField]
     private float timeToPress = 1.0f;
 
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
 
-    void OnTriggerEnter()
+    public void OnTriggerEnter2D(Collider2D collider)
     {
-        corout = StartCoroutine(WaitPressedButtonBeforeMiniGame());
+        Player player = collider.gameObject.GetComponent<Player>();
+
+        if (player != null)
+        {
+            
+            corout = StartCoroutine(WaitPressedButtonBeforeMiniGame(player));
+            
+        }
     }
 
-    void OnTriggerExit()
+    public void OnTriggerExit2D(Collider2D collider)
     {
-        StopCoroutine(corout);
+        Player player = collider.gameObject.GetComponent<Player>();
+        if (player != null)
+        {
+            player.GetComponent<TranslationController>().enabled = true;
+            StopCoroutine(corout);
+        }
     }
 
-    IEnumerator WaitPressedButtonBeforeMiniGame()
+    IEnumerator WaitPressedButtonBeforeMiniGame(Player player)
     {
         float timePressed = 0.0f;
 
         Debug.Log(timePressed + " " + timeToPress);
         while (timePressed < timeToPress)
         {
-            Debug.Log("coucou");
-
-            if (Input.GetAxis("Fire3") == 1.0f)
+            if (Input.GetButton("Action"))
             {
                 timePressed += Time.deltaTime;
             }
@@ -58,10 +57,10 @@ public class Checkpoint : MonoBehaviour {
             }
             yield return null;
         }
-
+        Debug.Log("Coucou");
         SceneManager.LoadScene("TestMiniGame", LoadSceneMode.Additive);
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => {
-
+            player.GetComponent<TranslationController>().enabled = false;
             MinigameManager.Instance.OnGoodAnswer = new UnityEvent();
             MinigameManager.Instance.OnBadAnswer = new UnityEvent();
             MinigameManager.Instance.OnGoodAnswer.AddListener(() => {

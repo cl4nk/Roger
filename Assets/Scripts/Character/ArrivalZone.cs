@@ -64,6 +64,13 @@ public class ArrivalZone : MonoBehaviour
         OnArriveEvent.AddListener(OnArrive);
     }
 
+    private Checkpoint checkpoint;
+
+    public void Start()
+    {
+        checkpoint = GetComponent<Checkpoint>();
+    }
+
     public void Update()
     {
         if (Vector3.Distance(Target.position, transform.position) <= AcceptanceRadius)
