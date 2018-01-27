@@ -14,7 +14,7 @@ public class TranslationController : MonoBehaviour {
 
     #endregion
 
-	void Update ()
+	void FixedUpdate ()
     {
         Translation();
 	}
