@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class ArrivalZone : MonoBehaviour
 {
-    public UnityEvent<ArrivalZone> StaticOnArriveEvent;
+    public static event Action<ArrivalZone> StaticOnArriveEvent;
     public UnityEvent OnArriveEvent;
 
     public bool OnlyOnce = false;
@@ -40,6 +41,7 @@ public class ArrivalZone : MonoBehaviour
     public void OnEnable()
     {
         AlreadyTriggered = true;
+        PlayerIsInZone = false;
         OnArriveEvent.AddListener(OnArrive);
     }
 
@@ -70,5 +72,12 @@ public class ArrivalZone : MonoBehaviour
     public void OnArrive()
     {
         AlreadyTriggered = true;
+        PlayerIsInZone = true;
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, AcceptanceRadius);
     }
 }

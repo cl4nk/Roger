@@ -24,6 +24,6 @@ public class TranslationController : MonoBehaviour {
         float verticalTranslation = (Input.GetAxis(verticalTranslationAxis) * moveSpeed) * Time.deltaTime;
         float horizontalTranslation = (Input.GetAxis(horizontalTranslationAxis) * moveSpeed) * Time.deltaTime;
 
-        transform.Translate(horizontalTranslation, 0, verticalTranslation);
+        transform.Translate(horizontalTranslation, verticalTranslation, 0);
     }
 }
