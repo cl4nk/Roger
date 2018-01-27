@@ -24,6 +24,6 @@ public class PlayerCamera : MonoBehaviour {
     {
         transform.rotation = Quaternion.Euler(new Vector3(angle, 0, 0));
         Vector3 targetPosition = playerTransf.position - transform.forward * cameraDistance;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        transform.position = targetPosition;
     }
 }

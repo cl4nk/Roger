@@ -42,7 +42,7 @@ public class VisualDetection : MonoBehaviour
 
         if (raycastHit.collider is TilemapCollider2D)
         {
-            Debug.Log(raycastHit.collider);
+            //Debug.Log(raycastHit.collider);
         }
     }
 
@@ -54,6 +54,7 @@ public class VisualDetection : MonoBehaviour
         if (playerDistance > Distance)
             return;
 
+    
 
         Vector3 directionToPlayer = Target.position - transform.position;
         float angle = Vector3.Angle(transform.right, directionToPlayer.normalized);
@@ -61,11 +62,22 @@ public class VisualDetection : MonoBehaviour
         if (angle > Angle)
             return;
 
-        if (StaticOnPlayerDetected != null)
-            StaticOnPlayerDetected(this, Target);
+        int layerMask = 1 << LayerMask.NameToLayer("Wall");
+      
+      
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Target.position - transform.position, Vector2.Distance(Target.position, transform.position), layerMask);
+        
 
-        if (OnPlayerDetected != null)
-            OnPlayerDetected.Invoke(Target);
+        if (raycastHit.collider == null)
+        {
+
+            if (StaticOnPlayerDetected != null)
+                StaticOnPlayerDetected(this, Target);
+
+            if (OnPlayerDetected != null)
+                OnPlayerDetected.Invoke(Target);
+        }
+       
     }
 
     public void OnDrawGizmos()
