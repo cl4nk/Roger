@@ -18,33 +18,16 @@ public class PathFollowingAI : MonoBehaviour {
     private int currentDestination = 0;
     private int increment = 1;
 
-    //private NavMeshAgent agent;
-
-
-
-
 	// Use this for initialization
-	void Start () {
-        /*agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(pathPoints[currentDestination].position);*/
+	void Start ()
+    {
         transf = transform;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        /*if (agent.pathStatus == NavMeshPathStatus.PathComplete)
-        {
-            currentDestination += increment;
-            agent.SetDestination(pathPoints[currentDestination].position);
-
-            if (currentDestination == 0 || currentDestination == pathPoints.Length)
-            {
-                increment = -increment;
-            }
-        }*/
-
+	void Update ()
+    {
         Vector3 direction = pathPoints[currentDestination].position - transf.position;
-        direction = new Vector3(direction.x, 0.0f, direction.z);
         direction.Normalize();
 
         transf.Translate(direction * Time.deltaTime * speed);
