@@ -171,9 +171,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentList:
-  - {fileID: 114835519736581272}
-  - {fileID: 114590341281096530}
   - {fileID: 114585152120355092}
+  - {fileID: 114590341281096530}
+  - {fileID: 114835519736581272}
   leftBump: LeftBump
   rightBump: RightBump
   horizontalRotationAxis: HorizontalRotation
