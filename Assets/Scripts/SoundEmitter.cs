@@ -22,6 +22,7 @@ public class SoundEmitter : MonoBehaviour
 
     public DistanceFilter RefDistanceFilter;
     public DirectionnalFilter RefDirectionnalFilter;
+
     public void Awake()
     {
         Emitters.Add(this);
@@ -45,10 +46,10 @@ public class SoundEmitter : MonoBehaviour
             Vector3 direction = transform.position - RefDirectionnalFilter.transform.position;
 
             //TODO : Verify if it is forward or right
-            float angle = Vector3.Angle(RefDirectionnalFilter.transform.forward,
+            float angle = Vector3.Angle(RefDirectionnalFilter.transform.right,
                 direction);
 
-            angle *= Mathf.Sign(Vector3.Dot(RefDirectionnalFilter.transform.forward, direction));
+            angle *= Mathf.Sign(Vector3.Dot(RefDirectionnalFilter.transform.right, direction)) * -1;
 
             Source.panStereo = angle / RefDirectionnalFilter.Angle;
         }
