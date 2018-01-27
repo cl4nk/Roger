@@ -41,7 +41,6 @@ public class MinigameManager : Singleton<MinigameManager> {
     {
         sentenceWord = new List<string>();
         LoadMessages();
-        StartMessage(0);
     }
 
     void AddWordButton(string word)
