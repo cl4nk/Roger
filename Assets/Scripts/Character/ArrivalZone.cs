@@ -73,4 +73,10 @@ public class ArrivalZone : MonoBehaviour
         AlreadyTriggered = true;
         PlayerIsInZone = true;
     }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, AcceptanceRadius);
+    }
 }

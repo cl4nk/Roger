@@ -17,4 +17,13 @@ public class LevelManager : MonoBehaviour
     {
         arrivalZone.OnArriveEvent.RemoveListener(OnArrive.Invoke);
     }
+
+    public void OnDrawGizmos()
+    {
+        if (!arrivalZone)
+            return;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(arrivalZone.transform.position, 0.1f);
+    }
 }
