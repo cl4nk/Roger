@@ -43,7 +43,7 @@ public class SoundEmitter : MonoBehaviour
         if (RefDistanceFilter)
         {
             Source.volume = Vector3.Distance(transform.position, RefDistanceFilter.transform.position) /
-                            RefDistanceFilter.MaxDistance;
+                            RefDistanceFilter.CurrentDistance;
         }
 
         if (RefDirectionnalFilter)

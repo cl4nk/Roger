@@ -916,9 +916,12 @@ GameObject:
   - component: {fileID: 1598447924}
   - component: {fileID: 1598447923}
   - component: {fileID: 1598447920}
-  - component: {fileID: 1598447922}
   - component: {fileID: 1598447921}
   - component: {fileID: 1598447925}
+  - component: {fileID: 1598447928}
+  - component: {fileID: 1598447927}
+  - component: {fileID: 1598447926}
+  - component: {fileID: 1598447922}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -956,7 +959,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b47586bba6acb4bb8c5aa7f4abc1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentDistance: 5
   MaxDistance: 5
+  MinDistance: 0.5
+  Speed: 2
 --- !u!81 &1598447921
 AudioListener:
   m_ObjectHideFlags: 0
@@ -972,10 +978,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1598447918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b47586bba6acb4bb8c5aa7f4abc1d3, type: 3}
+  m_Script: {fileID: 11500000, guid: a62558d98fccb1f4db7998556ee88f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxDistance: 5
+  Speed: 100
 --- !u!114 &1598447923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,6 +1058,55 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!169 &1598447926
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598447918}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!165 &1598447927
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598447918}
+  m_Enabled: 1
+  m_CutoffFrequency: 5000
+  m_HighpassResonanceQ: 1
+--- !u!114 &1598447928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598447918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83488ec965a2a443bfe64606eb0bfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComponentList:
+  - {fileID: 1598447920}
+  - {fileID: 1598447922}
+  - {fileID: 2063477449}
+  leftBump: LeftBump
+  rightBump: RightBump
+  horizontalRotationAxis: HorizontalRotation
+  verticalRotationAxis: VerticalRotation
 --- !u!1 &1737859876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,8 +1443,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
-  horizontalRotationAxis: HorizontalRotation
-  verticalRotationAxis: VerticalRotation
 --- !u!4 &2063477450
 Transform:
   m_ObjectHideFlags: 0

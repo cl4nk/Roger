@@ -2,10 +2,14 @@
 
 [RequireComponent(typeof(AudioLowPassFilter))]
 [RequireComponent(typeof(AudioHighPassFilter))]
-public class FrequenceFilter : MonoBehaviour
+public class FrequenceFilter : MonoBehaviour, ICommand
 {
     [Range(10.0f, 22000.0f)]
     private float frequence = 5000;
+
+    private const float MAX_FREQUENCE = 22000.0f;
+    private const float MIN_FREQUENCE = 10.0f;
+
 
     [Range(10.0f, 22000.0f)]
     private float range = 1000;
@@ -56,8 +60,29 @@ public class FrequenceFilter : MonoBehaviour
         }
     }
 
+    public float Speed = 100.0f;
+    protected Vector2 LastInput = Vector2.zero;
+
     public void OnEnable()
     {
         Range = range;
+    }
+
+    public void EnterInputVector(Vector2 direction)
+    {
+        if (direction.sqrMagnitude == 0.0f)
+        {
+            LastInput = Vector2.zero;
+        }
+        else
+        {
+            Vector3 newDirection = direction.normalized;
+            if (LastInput.sqrMagnitude > 0.0f)
+            {
+                Frequence += Vector2.SignedAngle(LastInput, newDirection) * Time.deltaTime * -Speed;
+                Frequence = Mathf.Clamp(Frequence, MIN_FREQUENCE, MAX_FREQUENCE);
+            }
+            LastInput = newDirection;
+        }
     }
 }

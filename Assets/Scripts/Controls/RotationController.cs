@@ -1,37 +1,26 @@
 ﻿using UnityEngine;
 
-public class RotationController : MonoBehaviour {
-
+public class RotationController : MonoBehaviour, ICommand
+{
     #region Fields
     [SerializeField]
     private float rotationSpeed = 5f;
 
-    [SerializeField]
-    private string horizontalRotationAxis = "HorizontalRotation";
-
-    [SerializeField]
-    private string verticalRotationAxis = "VerticalRotation";
-
     #endregion
 
-    void Update()
+    public void OnDrawGizmos()
     {
-        Rotate();
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.right);
     }
 
-    public void Rotate()
+    public void EnterInputVector(Vector2 direction)
     {
-        Vector3 forward = new Vector3(Input.GetAxis(horizontalRotationAxis), Input.GetAxis(verticalRotationAxis), 0.0f);
+        Vector3 forward = new Vector3(direction.x, direction.y, 0.0f);
 
         if (forward.sqrMagnitude > 0.0f)
         {
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(forward, Vector3.forward), rotationSpeed * Time.deltaTime);
         }
-    }
-
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward);
     }
 }
