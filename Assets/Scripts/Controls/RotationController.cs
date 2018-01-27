@@ -6,6 +6,7 @@ public class RotationController : MonoBehaviour, ICommand
     [SerializeField]
     private float rotationSpeed = 5f;
 
+    [SerializeField] private GameObject feedback;
     #endregion
 
     public void OnDrawGizmos()
@@ -16,19 +17,27 @@ public class RotationController : MonoBehaviour, ICommand
 
     public void OnCommandEnable()
     {
+        if (feedback)
+        {
+            feedback.SetActive(true);
+        }
     }
 
     public void OnCommandDisable()
     {
+        if (feedback)
+        {
+            feedback.SetActive(false);
+        }
     }
 
     public void EnterInputVector(Vector2 direction)
     {
-        Vector3 forward = new Vector3(direction.y, direction.x, 0.0f) * -1;
-
-        if (forward.sqrMagnitude > 0.0f)
+        if (direction.sqrMagnitude > 0.0f)
         {
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(forward, Vector3.forward), rotationSpeed * Time.deltaTime);
+            float angle = Vector3.Angle(Vector3.right, direction);
+            Quaternion targetQuaternion = Quaternion.Euler(0, 0, angle * Mathf.Sign(direction.y) * -1);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, targetQuaternion, rotationSpeed * Time.deltaTime);
         }
     }
 }
