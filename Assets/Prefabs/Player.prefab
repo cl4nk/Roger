@@ -320,10 +320,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indication: {fileID: 114374667697492502}
-  CurrentDistance: 5
+  currentDistance: 5
   MaxDistance: 60
   MinDistance: 8
   Speed: 1
+  IndicationDuration: 2
 --- !u!114 &114894615539807292
 MonoBehaviour:
   m_ObjectHideFlags: 1
