@@ -14,6 +14,11 @@ public class CommandController : MonoBehaviour
         set
         {
             currentCommand = value;
+            foreach (ICommand command in CommandList)
+            {
+                command.OnCommandDisable();
+            }
+            CommandList[currentCommand].OnCommandEnable();
             if (OnCommandEvent != null)
             {
                 OnCommandEvent.Invoke(currentCommand);
@@ -41,6 +46,8 @@ public class CommandController : MonoBehaviour
         {
             CommandList[i] = ComponentList[i] as ICommand;
         }
+
+        CurrentCommand = 0;
     }
 
     // Update is called once per frame
@@ -48,23 +55,23 @@ public class CommandController : MonoBehaviour
     {
         if (Input.GetButtonUp(leftBump))
         {
-            if (currentCommand == 0)
+            if (CurrentCommand == 0)
             {
-                currentCommand = CommandList.Length - 1;
+                CurrentCommand = CommandList.Length - 1;
             }
             else
             {
-                -- currentCommand;
+                --CurrentCommand;
             }
             
         }
         else if (Input.GetButtonUp(rightBump))
         {
-            currentCommand = (currentCommand + 1) % CommandList.Length;
+            CurrentCommand = (CurrentCommand + 1) % CommandList.Length;
         }
         else
         {
-            CommandList[currentCommand]
+            CommandList[CurrentCommand]
                 .EnterInputVector(new Vector2(Input.GetAxis(horizontalRotationAxis), Input.GetAxis(verticalRotationAxis)));
         }
     }
