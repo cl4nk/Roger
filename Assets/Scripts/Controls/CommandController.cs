@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class CommandController : MonoBehaviour
 {
@@ -6,6 +7,21 @@ public class CommandController : MonoBehaviour
     private Component[] ComponentList;
     private ICommand[] CommandList;
     private int currentCommand = 0;
+
+    public int CurrentCommand
+    {
+        get { return currentCommand; }
+        set
+        {
+            currentCommand = value;
+            if (OnCommandEvent != null)
+            {
+                OnCommandEvent.Invoke(currentCommand);
+            }
+        }
+    }
+
+    public UnityEvent<int> OnCommandEvent;
 
     [SerializeField]
     private string leftBump = "LeftBump";
