@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathPoints: []
-  speed: 0.2
+  speed: 0.8
   reachMargin: 0.2
 --- !u!114 &114967847844411500
 MonoBehaviour:
