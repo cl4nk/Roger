@@ -28,6 +28,11 @@ public class SoundEmitter : MonoBehaviour
         Emitters.Add(this);
     }
 
+    public void OnDestroy()
+    {
+        Emitters.Remove(this);
+    }
+
     public void OnEnable()
     {
         Source.maxDistance = float.MaxValue;
@@ -45,18 +50,24 @@ public class SoundEmitter : MonoBehaviour
         {
             Vector3 direction = transform.position - RefDirectionnalFilter.transform.position;
 
-            //TODO : Verify if it is forward or right
             float angle = Vector3.Angle(RefDirectionnalFilter.transform.right,
                 direction);
 
-            angle *= Mathf.Sign(Vector3.Dot(RefDirectionnalFilter.transform.right, direction)) * -1;
-
-            Source.panStereo = angle / RefDirectionnalFilter.Angle;
+            if (angle > RefDirectionnalFilter.Angle)
+            {
+                Source.volume = 0.0f;
+            }
+            else
+            {
+                angle *= Mathf.Sign(Vector3.Dot(RefDirectionnalFilter.transform.right, direction)) * -1;
+                Source.panStereo = angle / RefDirectionnalFilter.Angle;
+            }
         }
     }
 
-    public void OnDestroy()
+    public void OnDrawGizmos()
     {
-        Emitters.Remove(this);
+        Gizmos.color = Color.Lerp(Color.green, Color.red, Source.volume);
+        Gizmos.DrawWireSphere(transform.position, Source.maxDistance);
     }
 }
