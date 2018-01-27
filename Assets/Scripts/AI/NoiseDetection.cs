@@ -42,4 +42,10 @@ public class NoiseDetection : MonoBehaviour
             }
         }
     }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, Distance);
+    }
 }
