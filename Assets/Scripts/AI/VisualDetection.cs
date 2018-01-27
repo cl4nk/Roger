@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class VisualDetection : MonoBehaviour
 {
@@ -29,9 +30,27 @@ public class VisualDetection : MonoBehaviour
         }
     }
 
+    public void FixedUpdate()
+    {
+
+        int layerMask = 1 << 9;
+        layerMask = ~layerMask;
+
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Target.position - transform.position, Vector2.Distance(Target.position, transform.position), layerMask);
+
+
+
+        if (raycastHit.collider is TilemapCollider2D)
+        {
+            Debug.Log(raycastHit.collider);
+        }
+    }
+
     public void Update()
     {
         float playerDistance = Vector3.Distance(Target.position, transform.position);
+        
+
         if (playerDistance > Distance)
             return;
 
