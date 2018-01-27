@@ -112,6 +112,8 @@ public class MinigameManager : Singleton<MinigameManager> {
         do
         {
             GameObject go = Instantiate(buttonPrefab);
+            RectTransform rect = go.transform as RectTransform;
+            rect.rotation = Quaternion.Euler(new Vector3(0.0f,0.0f, UnityEngine.Random.Range(-10, 10)));
             WordButton butt = go.GetComponent<WordButton>();
             butt.SetWord(words[index]);
             if (isFirst)

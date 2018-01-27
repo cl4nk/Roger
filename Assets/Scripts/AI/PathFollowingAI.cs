@@ -18,6 +18,7 @@ public class PathFollowingAI : MonoBehaviour
     private Vector3? TempDestination;
 
     private NoiseDetection noiseDetection;
+    private float rotationSpeed = 10.0f;
 
     public void OnEnable()
     {
@@ -46,7 +47,9 @@ public class PathFollowingAI : MonoBehaviour
         Vector3 direction = target.Value - transform.position;
         direction.Normalize();
 
-        transform.Translate(direction * Time.deltaTime * speed);
+        transform.position += (direction * Time.deltaTime * speed);
+        transform.right = direction;
+        //transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(direction, Vector3.forward), rotationSpeed * Time.deltaTime);
 
         if (HasReachDestination())
         {

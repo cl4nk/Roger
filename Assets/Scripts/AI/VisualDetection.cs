@@ -54,13 +54,14 @@ public class VisualDetection : MonoBehaviour
         Gizmos.color = Color.blue;
 
         Quaternion quaternion = Quaternion.Euler(0.0f, 0.0f, Angle);
-        Gizmos.DrawRay(transform.position, quaternion * transform.right);
+        Vector3 direction = transform.right * Distance;
+        Gizmos.DrawRay(transform.position, quaternion * direction);
 
         quaternion = Quaternion.Euler(0.0f, 0.0f, -Angle);
 
-        Gizmos.DrawRay(transform.position, quaternion * transform.right);
+        Gizmos.DrawRay(transform.position, quaternion * direction);
 
-        Gizmos.DrawRay(transform.position, transform.right);
+        Gizmos.DrawRay(transform.position, direction);
 
     }
 

@@ -29,5 +29,8 @@ public class WalkNoise : MonoBehaviour
     {
         Gizmos.color = Color.black;
         Gizmos.DrawSphere(LastPosition, 0.05f);
+
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, NoiseRange);
     }
 }
