@@ -9,8 +9,7 @@ public class HideSpot : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log(other.gameObject);
-        if (Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1"))
         {
             Debug.Log(IsHidden);
             other.gameObject.GetComponent<TranslationController>().enabled = IsHidden;
