@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class ArrivalZone : MonoBehaviour
 {
-    public UnityEvent<ArrivalZone> StaticOnArriveEvent;
+    public static event Action<ArrivalZone> StaticOnArriveEvent;
     public UnityEvent OnArriveEvent;
 
     public bool OnlyOnce = false;
