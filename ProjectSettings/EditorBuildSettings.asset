@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test3C.unity
     guid: b5bd2abf7f93e9c4d91602bd7071fb1a
+  - enabled: 1
+    path: Assets/Scenes/TestMiniGame.unity
+    guid: f2024fd1cac1532439f3767eb6aec93e
