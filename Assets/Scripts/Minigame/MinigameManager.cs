@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class MinigameManager : Singleton<MinigameManager> {
@@ -37,11 +38,14 @@ public class MinigameManager : Singleton<MinigameManager> {
     public UnityEvent OnGoodAnswer;
     public UnityEvent OnBadAnswer;
 
+    public int messageToStart;
+
     void Start()
     {
         sentenceWord = new List<string>();
-        LoadMessages();
-        StartMessage(0);
+
+
+
     }
 
     void AddWordButton(string word)
@@ -104,6 +108,14 @@ public class MinigameManager : Singleton<MinigameManager> {
         words.AddRange(info.sentenceWords);
         words.AddRange(info.baitWords);
 
+        for (int i = 0; i < layouts.Length; i++)
+        {
+            foreach (Transform child in layouts[i].transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         int nbWordsPerLine = words.Count / layouts.Length + 1;
 
         int index = words.Count - 1;
@@ -138,7 +150,7 @@ public class MinigameManager : Singleton<MinigameManager> {
         currentMessage = numMessage;
     }
 
-    void LoadMessages()
+    public void LoadMessages()
     {
         string content;
         using (StreamReader sr = new StreamReader(Application.streamingAssetsPath + "/messages.json"))
