@@ -54,9 +54,15 @@ public class VisualDetection : MonoBehaviour
         if (playerDistance > Distance)
             return;
 
-    
+
 
         Vector3 directionToPlayer = Target.position - transform.position;
+
+        if (Target.GetComponent<SpriteRenderer>().enabled == false)
+        {
+            return;
+        }
+
         float angle = Vector3.Angle(transform.right, directionToPlayer.normalized);
 
         if (angle > Angle)
