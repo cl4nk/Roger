@@ -19,6 +19,9 @@ public class VisualDetection : MonoBehaviour
 
     public void Update()
     {
+        if (player == null)
+            return;
+
         float playerDistance = Vector3.Distance(player.position, transform.position);
         if (playerDistance > Distance)
             return;
@@ -32,7 +35,9 @@ public class VisualDetection : MonoBehaviour
 
         if (StaticOnPlayerDetected != null)
             StaticOnPlayerDetected(this, player);
-        OnPlayerDetected.Invoke(player);
+
+        if (OnPlayerDetected != null)
+            OnPlayerDetected.Invoke(player);
     }
 
     public void OnDrawGizmos()
