@@ -1,0 +1,101 @@
+{
+    "messages": [
+        
+        {
+            "sentence": "the great shark is riding my bicycle",
+            "sentenceWords": [
+                "the",
+                "great",
+                "shark",
+                "is",
+                "riding",
+                "my",
+                "bicycle"
+            ],
+            "baitWords": [
+                "this",
+                "then",
+                "finding",
+                "dark",
+                "article",
+                "tool",
+                "blind",
+                "by",
+                "neck",
+                "fly",
+                "suprising",
+                "donovan",
+                "you"
+            ]
+        },
+        {
+            "sentence": "Grandma is dancing foxtrot with my banana",
+            "sentenceWords": [
+                "Grandma",
+                "is",
+                "dancing",
+                "foxtrot",
+                "with",
+                "my",
+                "banana"
+            ],
+            "baitWords": [
+                "Palma",
+                "Lancing",
+                "Note",
+                "Kayak",
+                "Jive",
+                "Files",
+                "blind",
+                "by",
+                "enjoying",
+                "anna",
+                "This",
+                "Kotnot",
+                "will"
+            ]
+        },
+        {
+            "sentence": "Uncle Sanchez got the job done",
+            "sentenceWords": [
+                "Uncle",
+                "Sanchez",
+                "got",
+                "the",
+                "job",
+                "done"
+            ],
+            "baitWords": [
+                "Panchez",
+                "Lanchez",
+                "Kunkle",
+                "Junkle",
+                "Tot",
+                "Note",
+                "Jone",
+                "Moky",
+                "Lone",
+                "Ne",
+                "Poalable",
+                "Jigurma",
+                "Die"
+            ]
+        },
+        {
+            "sentence": "",
+            "sentenceWords": [ ],
+            "baitWords": [
+                "It",
+                "Doesnt",
+                "Matter",
+                "I’m",
+                "Not",
+                "Gonna",
+                "Make",
+                "It",
+                "Anyway"
+
+            ]
+        }
+    ]
+}
