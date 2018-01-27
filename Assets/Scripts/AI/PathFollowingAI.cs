@@ -46,6 +46,7 @@ public class PathFollowingAI : MonoBehaviour
         Vector3 direction = target.Value - transform.position;
         direction.Normalize();
 
+        transform.right = direction;
         transform.Translate(direction * Time.deltaTime * speed);
 
         if (HasReachDestination())
