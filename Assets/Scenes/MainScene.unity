@@ -6521,7 +6521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d559fc36974cb74cac13eee26bbaf23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageToStart: 0
+  messageToStart: 1
   toDisable:
   - {fileID: 2138224707}
   - {fileID: 1384295089}

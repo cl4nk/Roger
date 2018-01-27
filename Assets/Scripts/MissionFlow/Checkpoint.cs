@@ -57,27 +57,33 @@ public class Checkpoint : MonoBehaviour {
             }
             yield return null;
         }
-        Debug.Log("Coucou");
+
+        player.GetComponent<TranslationController>().enabled = false;
+
         SceneManager.LoadScene("TestMiniGame", LoadSceneMode.Additive);
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => {
-            player.GetComponent<TranslationController>().enabled = false;
             MinigameManager.Instance.OnGoodAnswer = new UnityEvent();
             MinigameManager.Instance.OnBadAnswer = new UnityEvent();
             MinigameManager.Instance.OnGoodAnswer.AddListener(() => {
-                SceneManager.UnloadScene("TestMiniGame");
                 for (int i = 0; i < toDisable.Length; i++)
                 {
-                    Destroy(toDisable[i]);
+                    if (toDisable[i] != null)
+                        Destroy(toDisable[i]);
                 }
                 Destroy(gameObject);
+                player.GetComponent<TranslationController>().enabled = true;
+                SceneManager.UnloadSceneAsync("TestMiniGame");
+
             });
             MinigameManager.Instance.OnBadAnswer.AddListener(() => {
-                SceneManager.UnloadScene("TestMiniGame");
                 for (int i = 0; i < toDisable.Length; i++)
                 {
-                    Destroy(toDisable[i]);
+                    if (toDisable[i] != null)
+                        Destroy(toDisable[i]);
                 }
                 Destroy(gameObject);
+                player.GetComponent<TranslationController>().enabled = true;
+                SceneManager.UnloadSceneAsync("TestMiniGame");
             });
             MinigameManager.Instance.LoadMessages();
             MinigameManager.Instance.StartMessage(messageToStart);

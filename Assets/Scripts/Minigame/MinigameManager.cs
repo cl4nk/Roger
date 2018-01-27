@@ -101,7 +101,7 @@ public class MinigameManager : Singleton<MinigameManager> {
             if (OnBadAnswer != null)
                 OnBadAnswer.Invoke();
         }
-            
+
     }
 
     public void StartMessage(int numMessage)
