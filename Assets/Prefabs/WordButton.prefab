@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 222647308452808320}
   - component: {fileID: 114056189040342098}
   - component: {fileID: 114706886918921206}
-  - component: {fileID: 114380687658202468}
   - component: {fileID: 114119983993014106}
+  - component: {fileID: 114655315481724082}
   m_Layer: 5
   m_Name: WordButton
   m_TagString: Untagged
@@ -69,7 +69,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -116,7 +116,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114380687658202468
+--- !u!114 &114655315481724082
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -175,15 +175,15 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: ',nb,nb,nb,nb,nb,nb'
 --- !u!222 &222397327209728852
 CanvasRenderer:
   m_ObjectHideFlags: 1
