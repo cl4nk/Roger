@@ -45,7 +45,6 @@ public class SoundEmitter : MonoBehaviour
         {
             Vector3 direction = transform.position - RefDirectionnalFilter.transform.position;
 
-            //TODO : Verify if it is forward or right
             float angle = Vector3.Angle(RefDirectionnalFilter.transform.right,
                 direction);
 
@@ -58,5 +57,11 @@ public class SoundEmitter : MonoBehaviour
     public void OnDestroy()
     {
         Emitters.Remove(this);
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.Lerp(Color.green, Color.red, Source.volume);
+        Gizmos.DrawWireSphere(transform.position, Source.maxDistance);
     }
 }
