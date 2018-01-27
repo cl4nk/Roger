@@ -24,7 +24,7 @@ public class PathFollowingAI : MonoBehaviour
         noiseDetection = GetComponent<NoiseDetection>();
         if (noiseDetection)
         {
-            noiseDetection.OnNoiseDetected.AddListener(SetTempDestination);
+            noiseDetection.OnNoiseDetected += SetTempDestination;
         }
     }
 
@@ -32,7 +32,7 @@ public class PathFollowingAI : MonoBehaviour
     {
         if (noiseDetection)
         {
-            noiseDetection.OnNoiseDetected.RemoveListener(SetTempDestination);
+            noiseDetection.OnNoiseDetected += SetTempDestination;
         }
     }
 

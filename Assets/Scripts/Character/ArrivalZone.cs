@@ -10,7 +10,19 @@ public class ArrivalZone : MonoBehaviour
     public bool OnlyOnce = false;
 
     [SerializeField]
-    private Transform player;
+    private Transform target;
+
+    public Transform Target
+    {
+        get
+        {
+            if (target == null)
+            {
+                target = Player.Instance.transform;
+            }
+            return target;
+        }
+    }
 
     public float AcceptanceRadius = 1.0f;
 
@@ -53,7 +65,7 @@ public class ArrivalZone : MonoBehaviour
 
     public void Update()
     {
-        if (Vector3.Distance(player.position, transform.position) <= AcceptanceRadius)
+        if (Vector3.Distance(Target.position, transform.position) <= AcceptanceRadius)
         {
             if (CanBeTriggered)
             {

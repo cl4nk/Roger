@@ -13,7 +13,7 @@ public class NoiseDetection : MonoBehaviour
 
     public static event Action<NoiseDetection, Vector3> StaticOnNoiseDetected;
 
-    public UnityEvent<Vector3> OnNoiseDetected;
+    public event Action<Vector3> OnNoiseDetected;
 
     [Range(0, float.MaxValue)]
     public float Distance = 5.0f;

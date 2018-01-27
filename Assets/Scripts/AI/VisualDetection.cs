@@ -15,29 +15,38 @@ public class VisualDetection : MonoBehaviour
     [Range(0, float.MaxValue)]
     public float Distance = 5.0f;
 
-    public Transform player;
+    [SerializeField]
+    private Transform target;
+    public Transform Target
+    {
+        get
+        {
+            if (target == null)
+            {
+                target = Player.Instance.transform;
+            }
+            return target;
+        }
+    }
 
     public void Update()
     {
-        if (player == null)
-            return;
-
-        float playerDistance = Vector3.Distance(player.position, transform.position);
+        float playerDistance = Vector3.Distance(Target.position, transform.position);
         if (playerDistance > Distance)
             return;
 
 
-        Vector3 directionToPlayer = player.position - transform.position;
+        Vector3 directionToPlayer = Target.position - transform.position;
         float angle = Vector3.Angle(transform.right, directionToPlayer.normalized);
 
         if (angle > Angle)
             return;
 
         if (StaticOnPlayerDetected != null)
-            StaticOnPlayerDetected(this, player);
+            StaticOnPlayerDetected(this, Target);
 
         if (OnPlayerDetected != null)
-            OnPlayerDetected.Invoke(player);
+            OnPlayerDetected.Invoke(Target);
     }
 
     public void OnDrawGizmos()
