@@ -40,6 +40,7 @@ public class ArrivalZone : MonoBehaviour
     public void OnEnable()
     {
         AlreadyTriggered = true;
+        PlayerIsInZone = false;
         OnArriveEvent.AddListener(OnArrive);
     }
 
@@ -70,5 +71,6 @@ public class ArrivalZone : MonoBehaviour
     public void OnArrive()
     {
         AlreadyTriggered = true;
+        PlayerIsInZone = true;
     }
 }
