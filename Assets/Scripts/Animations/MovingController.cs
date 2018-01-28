@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 public class MovingController : MonoBehaviour
@@ -35,17 +36,32 @@ public class MovingController : MonoBehaviour
     [SerializeField]
     private string boolKey;
 
-	public float Distance;
+    private Coroutine couroutine;
 
-    public void Start()
+    public void OnEnable()
     {
-		LastPosition = RefTransform.position;
+        LastPosition = transform.position;
+        couroutine = StartCoroutine(CalcVelocity());
     }
 
-    public void Update()
+    public void OnDisable()
     {
-		Distance = Vector3.Distance (LastPosition, RefTransform.position);
-		Controller.SetBool(boolKey, Distance != 0.0f);
-        LastPosition = RefTransform.position;
+        if (couroutine != null)
+        {
+            StopCoroutine(couroutine);
+        }
+    }
+
+    IEnumerator CalcVelocity()
+    {
+        while (true)
+        {
+            // Position at frame start
+            LastPosition = transform.position;
+            // Wait till it the end of the frame
+            yield return new WaitForEndOfFrame();
+            // Calculate velocity: Velocity = DeltaPosition / DeltaTime
+            Controller.SetBool(boolKey, ((LastPosition - transform.position) / Time.deltaTime).magnitude > AcceptanceRadius);
+        }
     }
 }
