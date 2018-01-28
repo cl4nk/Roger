@@ -23763,6 +23763,7 @@ GameObject:
   - component: {fileID: 585634508}
   - component: {fileID: 585634510}
   - component: {fileID: 585634511}
+  - component: {fileID: 585634512}
   m_Layer: 0
   m_Name: Tour_radio
   m_TagString: Untagged
@@ -23866,7 +23867,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -23933,6 +23934,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &585634512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 585634507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66858444d6215ba40be705b33674996d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refDistanceFilter: {fileID: 0}
+  refDirectionnalFilter: {fileID: 0}
 --- !u!1 &587831916
 GameObject:
   m_ObjectHideFlags: 0
@@ -24696,6 +24710,7 @@ GameObject:
   - component: {fileID: 665188162}
   - component: {fileID: 665188164}
   - component: {fileID: 665188165}
+  - component: {fileID: 665188166}
   m_Layer: 0
   m_Name: Moulin
   m_TagString: Untagged
@@ -24799,7 +24814,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -24866,6 +24881,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &665188166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665188161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66858444d6215ba40be705b33674996d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refDistanceFilter: {fileID: 0}
+  refDirectionnalFilter: {fileID: 0}
 --- !u!1001 &665206877
 Prefab:
   m_ObjectHideFlags: 0
@@ -29740,6 +29768,7 @@ GameObject:
   - component: {fileID: 1162627226}
   - component: {fileID: 1162627225}
   - component: {fileID: 1162627227}
+  - component: {fileID: 1162627228}
   m_Layer: 0
   m_Name: Arbre_Corbeaux
   m_TagString: Untagged
@@ -29818,7 +29847,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -29885,6 +29914,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1162627228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162627224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66858444d6215ba40be705b33674996d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refDistanceFilter: {fileID: 0}
+  refDirectionnalFilter: {fileID: 0}
 --- !u!1001 &1186340222
 Prefab:
   m_ObjectHideFlags: 0

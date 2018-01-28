@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refTransform: {fileID: 0}
-  Inverted: 0
+  Inverted: 1
 --- !u!114 &114199896175242752
 MonoBehaviour:
   m_ObjectHideFlags: 1
