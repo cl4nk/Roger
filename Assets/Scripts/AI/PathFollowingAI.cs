@@ -15,10 +15,15 @@ public class PathFollowingAI : MonoBehaviour
     private int currentDestination = 0;
     private int increment = 1;
 
-    private Vector3? TempDestination;
+    private Vector3? TempDirection;
+
+    public float FixedDirectionDuration = 2.0f;
 
     private NoiseDetection noiseDetection;
+    [SerializeField]
     private float rotationSpeed = 10.0f;
+
+    private float fixedDirectionTime = 0.0f;
 
     public void OnEnable()
     {
@@ -40,6 +45,19 @@ public class PathFollowingAI : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     {
+        if (TempDirection.HasValue)
+        {
+            if (fixedDirectionTime > Time.time)
+            {
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(TempDirection.Value, Vector3.forward), rotationSpeed * Time.deltaTime);
+                return;
+            }
+            else
+            {
+                TempDirection = null;
+            }
+        }
+
         Vector3? target = GetTarget();
         if (target == null)
             return;
@@ -60,26 +78,21 @@ public class PathFollowingAI : MonoBehaviour
 
     private Vector3? GetTarget()
     {
-        if (!TempDestination.HasValue && pathPoints.Length == 0)
+        if (pathPoints == null)
+            return null;
+        if (pathPoints.Length == 0)
             return null;
 
-        return TempDestination.HasValue ? TempDestination.Value : pathPoints[currentDestination].position;
+        return pathPoints[currentDestination].position;
     }
 
     private void Increment()
     {
-        if (TempDestination.HasValue)
-        {
-            TempDestination = null;
-        }
-        else
-        {
-            currentDestination += increment;
+        currentDestination += increment;
 
-            if (currentDestination == 0 || currentDestination == pathPoints.Length - 1)
-            {
-                increment = -increment;
-            }
+        if (currentDestination == 0 || currentDestination == pathPoints.Length - 1)
+        {
+            increment = -increment;
         }
     }
 
@@ -93,7 +106,9 @@ public class PathFollowingAI : MonoBehaviour
 
     public void SetTempDestination(Vector3 position)
     {
-        TempDestination = position;
+        TempDirection = position - transform.position;
+
+        fixedDirectionTime = FixedDirectionDuration + Time.time;
     }
 
     public void OnDrawGizmos()
