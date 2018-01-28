@@ -67,8 +67,10 @@ public class PathFollowingAI : MonoBehaviour
 
         transform.position += (direction * Time.deltaTime * speed);
 
-        direction = new Vector3(direction.y, -direction.x);
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(direction, Vector3.forward), rotationSpeed * Time.deltaTime);
+        //direction = new Vector3(direction.y, -direction.x);
+
+        float angle = Vector3.Angle(Vector3.right, direction);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 0, angle * Mathf.Sign(direction.y)), rotationSpeed * Time.deltaTime);
 
         if (HasReachDestination())
         {
@@ -107,7 +109,6 @@ public class PathFollowingAI : MonoBehaviour
     public void SetTempDestination(Vector3 position)
     {
         Vector3 direction = position - transform.position;
-        TempRotation = Quaternion.LookRotation(direction, Vector3.forward);
         float angle = Vector3.Angle(Vector3.right, direction);
         TempRotation = Quaternion.Euler(0, 0, angle * Mathf.Sign(direction.y));
 
