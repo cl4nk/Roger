@@ -4396,6 +4396,11 @@ Prefab:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 2.4
       objectReference: {fileID: 0}
+    - target: {fileID: 212534267737851640, guid: 5e382138fe6c60842b0c2104cc6faa3a,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e382138fe6c60842b0c2104cc6faa3a, type: 2}
   m_IsPrefabParent: 0
@@ -6040,39 +6045,6 @@ Prefab:
       propertyPath: m_Name
       value: Enemi (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 4368331198975802, guid: 370372884380cc64aad678773028e87e, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212503945077520740, guid: 370372884380cc64aad678773028e87e,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 78f9eb67628efea498284296396136e7,
-        type: 3}
-    - target: {fileID: 4433307052214222, guid: 370372884380cc64aad678773028e87e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.0005409753
-      objectReference: {fileID: 0}
-    - target: {fileID: 4433307052214222, guid: 370372884380cc64aad678773028e87e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.99999994
-      objectReference: {fileID: 0}
-    - target: {fileID: 4433307052214222, guid: 370372884380cc64aad678773028e87e, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.062
-      objectReference: {fileID: 0}
-    - target: {fileID: 82867554914384408, guid: 370372884380cc64aad678773028e87e,
-        type: 2}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 243795582440063392, guid: 24f44e8235b19564193aadfbb4e0128b,
-        type: 2}
-    - target: {fileID: 82867554914384408, guid: 370372884380cc64aad678773028e87e,
-        type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 51dfbe7c480bf3647acc8b660c97ea9e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 370372884380cc64aad678773028e87e, type: 2}
   m_IsPrefabParent: 0
@@ -6133,9 +6105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac66d270bb0d7446b6d5259cc9a12b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refTransform: {fileID: 1728447049}
   boolKey: OnMove
-  Distance: 0
 --- !u!95 &1258836627
 Animator:
   serializedVersion: 3
