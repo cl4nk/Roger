@@ -31,7 +31,9 @@ public class CallSender : MonoBehaviour {
         CallReceiver receiver = col.GetComponent<CallReceiver>();
         if (receiver != null)
         {
+            receiver.responseCallbacks.RemoveAllListeners();
             receiver.responseCallbacks.AddListener(() => PlaySoundsResponse() );
+            receiver.noResponseCallbacks.RemoveAllListeners();
             receiver.noResponseCallbacks.AddListener(() => PlaySoundsNoResponse());
             receiver.StartRinging();
         }
