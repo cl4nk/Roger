@@ -23,6 +23,7 @@ public class Checkpoint : MonoBehaviour {
     [SerializeField]
     private UnityEvent toCall;
 
+    public AudioSource ambiant;
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -84,7 +85,7 @@ public class Checkpoint : MonoBehaviour {
                 toCall.Invoke();
                 player.GetComponent<TranslationController>().enabled = true;
                 SceneManager.UnloadSceneAsync("TestMiniGame");
-
+                ambiant.outputAudioMixerGroup.audioMixer.SetFloat("Volume", -0.17f);
             });
             MinigameManager.Instance.OnBadAnswer += (() => {
                 for (int i = 0; i < toDisable.Length; i++)
@@ -101,7 +102,10 @@ public class Checkpoint : MonoBehaviour {
                 toCall.Invoke();
                 player.GetComponent<TranslationController>().enabled = true;
                 SceneManager.UnloadSceneAsync("TestMiniGame");
+                ambiant.outputAudioMixerGroup.audioMixer.SetFloat("Volume", -0.17f);
             });
+            ambiant.outputAudioMixerGroup.audioMixer.SetFloat("Volume", -80f);
+
             MinigameManager.Instance.LoadMessages();
             MinigameManager.Instance.StartMessage(messageToStart);
         };
