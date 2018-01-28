@@ -16,6 +16,16 @@ public class AngleIndication : MonoBehaviour
         renderer.positionCount = 3;
     }
 
+	public void OnEnable()
+	{
+		renderer.enabled = true;
+	}
+
+	public void OnDisable()
+	{
+		renderer.enabled = false;
+	}
+
     // Update is called once per frame
     void Update ()
     {

@@ -188,6 +188,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 857027fb4b3fb024fa757ae5bcc28ace, type: 3}
   continous: 0
   MaxOffset: 10
+  DontPlayOnEnable: 1
 --- !u!212 &212849644942566412
 SpriteRenderer:
   m_ObjectHideFlags: 1
