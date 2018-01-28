@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [Serializable]
 public class MinigameManager : Singleton<MinigameManager> {
@@ -38,6 +39,9 @@ public class MinigameManager : Singleton<MinigameManager> {
     public UnityEvent OnGoodAnswer;
     public UnityEvent OnBadAnswer;
 
+    private int nbWord = 0;
+    private int nbMaxWord;
+
     public int messageToStart;
     public bool Debug;
 
@@ -49,7 +53,18 @@ public class MinigameManager : Singleton<MinigameManager> {
         {
             LoadMessages();
             StartMessage(0);
+        }
+    }
 
+    void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            RemoveLastWord();
+        }
+        if (Input.GetButtonDown("Start"))
+        {
+            ValidateSentence();
         }
     }
 
@@ -62,12 +77,36 @@ public class MinigameManager : Singleton<MinigameManager> {
 
     public void AddWordButtonValue(WordButton butt)
     {
+        if (nbWord == nbMaxWord)
+            return;
+        nbWord++;
+        UnityEngine.Debug.Log(butt.word);
         sentenceWord.Add(butt.word);
+
+        if (butt.FindSelectableOnRight() != null)
+            butt.FindSelectableOnRight().Select();
+        else if (butt.FindSelectableOnLeft() != null)
+            butt.FindSelectableOnLeft().Select();
+        else if (butt.FindSelectableOnUp() != null)
+            butt.FindSelectableOnUp().Select();
+        else if (butt.FindSelectableOnDown() != null)
+            butt.FindSelectableOnDown().Select();
+
         butt.transform.SetParent(answerLine);
+        UnityEngine.UI.Navigation nav = butt.navigation;
+        nav.mode = UnityEngine.UI.Navigation.Mode.None;
+        butt.navigation = nav;
+
+        butt.submitted = true;
     }
 
     public void RemoveWordButtonValue(WordButton butt)
     {
+        if (nbWord == 0)
+            return;
+        nbWord--;
+        UnityEngine.Debug.Log("pouet");
+
         sentenceWord.Remove(butt.word);
 
         Transform toFeed = layouts[0];
@@ -76,8 +115,20 @@ public class MinigameManager : Singleton<MinigameManager> {
             if (layouts[i].childCount < toFeed.childCount)
                 toFeed = layouts[i];
         }
-
+        UnityEngine.UI.Navigation nav = butt.navigation;
+        nav.mode = UnityEngine.UI.Navigation.Mode.Automatic;
+        butt.navigation = nav;
         butt.transform.SetParent(toFeed);
+        butt.submitted = false;
+    }
+
+    public void RemoveLastWord()
+    {
+        if (nbWord == 0)
+            return;
+        Transform transf = answerLine.GetChild(answerLine.childCount-1);
+        WordButton wb = transf.GetComponent<WordButton>();
+        RemoveWordButtonValue(wb);
     }
 
     public void ValidateSentence()
@@ -163,5 +214,13 @@ public class MinigameManager : Singleton<MinigameManager> {
             content = sr.ReadToEnd();
         }
         messages = JsonUtility.FromJson<Messages>(content);
+
+        nbMaxWord = messages.messages[0].sentence.Split(' ').Length;
+        for (int i = 1; i < messages.messages.Length; i++)
+        {
+            if (nbMaxWord < messages.messages[i].sentence.Split(' ').Length)
+                nbMaxWord = messages.messages[i].sentence.Split(' ').Length;
+
+        }
     }
 }

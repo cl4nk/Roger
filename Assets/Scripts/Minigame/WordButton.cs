@@ -5,17 +5,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class WordButton : Button , ICancelHandler{
+public class WordButton : Button {
 
     public string word { get; private set; }
 
-    private bool submitted;
+    public bool submitted;
 
     protected override void Start()
     {
         base.Start();
-
-        onClick.AddListener(() => AddValue());
     }
 
     public void SetWord(string word)
@@ -41,16 +39,6 @@ public class WordButton : Button , ICancelHandler{
         {
             base.OnSubmit(eventData);
             AddValue();
-            submitted = true;
-        }
-    }
-
-    public void OnCancel(BaseEventData eventData)
-    {
-        if (submitted)
-        {
-            RemoveValue();
-            submitted = false;
         }
     }
 }
