@@ -15,6 +15,7 @@ MonoBehaviour:
   HasPlatforms: 1
   sourceProjectPath: 
   SourceProjectPathUnformatted: 
+  sourceBankPath: 
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
