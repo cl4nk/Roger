@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class TranslationController : MonoBehaviour {
+public class TranslationController : MonoBehaviour, IMoving
+{
 
     #region Fields
     [SerializeField]
@@ -14,6 +15,8 @@ public class TranslationController : MonoBehaviour {
 
     #endregion
 
+    private bool isMoving = false;
+
 	void FixedUpdate ()
     {
         Translation();
@@ -21,9 +24,20 @@ public class TranslationController : MonoBehaviour {
 
     public void Translation()
     {
-        float verticalTranslation = (Input.GetAxis(verticalTranslationAxis) * moveSpeed) * Time.deltaTime;
-        float horizontalTranslation = (Input.GetAxis(horizontalTranslationAxis) * moveSpeed) * Time.deltaTime;
+        float verticalTranslation = (Input.GetAxis(verticalTranslationAxis));
+        float horizontalTranslation = (Input.GetAxis(horizontalTranslationAxis));
 
-        transform.Translate(horizontalTranslation, verticalTranslation, 0);
+        Vector3 translation = new Vector3(horizontalTranslation, verticalTranslation);
+
+        isMoving = translation.sqrMagnitude != 0.0f;
+
+        translation *= moveSpeed * Time.deltaTime;
+
+        transform.Translate(translation);
+    }
+
+    public bool IsMoving()
+    {
+        return isMoving;
     }
 }
