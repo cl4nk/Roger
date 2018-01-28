@@ -74,9 +74,6 @@ GameObject:
   - component: {fileID: 81027532428213208}
   - component: {fileID: 212534267737851640}
   - component: {fileID: 114809418510701062}
-  - component: {fileID: 165203204576597864}
-  - component: {fileID: 169101939120698916}
-  - component: {fileID: 114590341281096530}
   - component: {fileID: 114831095788424180}
   - component: {fileID: 114894615539807292}
   - component: {fileID: 61054272011841370}
@@ -127,7 +124,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1768931540554706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: -48.589996, z: 0}
+  m_LocalPosition: {x: -2.27, y: -12.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4819586921248650}
@@ -295,18 +292,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   feedback: {fileID: 1571360871632058}
---- !u!114 &114590341281096530
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1768931540554706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a62558d98fccb1f4db7998556ee88f8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 400
 --- !u!114 &114809418510701062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ComponentList:
   - {fileID: 114585152120355092}
-  - {fileID: 114590341281096530}
+  - {fileID: 114992638790286118}
   - {fileID: 114835519736581272}
   leftBump: LeftBump
   rightBump: RightBump
@@ -414,37 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e223af41d168d4d8604e9f1d994953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Angle: 10
---- !u!165 &165203204576597864
-AudioHighPassFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1768931540554706}
-  m_Enabled: 1
-  m_CutoffFrequency: 5000
-  m_HighpassResonanceQ: 1
---- !u!169 &169101939120698916
-AudioLowPassFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1768931540554706}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_LowpassResonanceQ: 1
-  lowpassLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0.22727273
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
+  Angle: 40
 --- !u!212 &212268120603932000
 SpriteRenderer:
   m_ObjectHideFlags: 1
