@@ -17,6 +17,8 @@ public class TranslationController : MonoBehaviour, IMoving
 
     private bool isMoving = false;
 
+    public bool GoLeft { get; private set; }
+
 	void FixedUpdate ()
     {
         Translation();
@@ -28,6 +30,8 @@ public class TranslationController : MonoBehaviour, IMoving
         float horizontalTranslation = (Input.GetAxis(horizontalTranslationAxis));
 
         Vector3 translation = new Vector3(horizontalTranslation, verticalTranslation);
+
+        GoLeft = Vector3.Angle(translation, Vector3.left) < 90.0f;
 
         isMoving = translation.sqrMagnitude != 0.0f;
 
