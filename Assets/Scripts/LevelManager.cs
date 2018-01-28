@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
     {
         if (player.transform == found)
         {
-            RespawnPlayer();
+            ForceDeath();
         }
     }
 
@@ -63,6 +63,11 @@ public class LevelManager : MonoBehaviour
         {
             lastCheckpoint = zone.transform.position;
         }
+    }
+
+    private void ForceDeath()
+    {
+        Player.TakeDamage(Player.MaxHP);
     }
 
     private void RespawnPlayer()

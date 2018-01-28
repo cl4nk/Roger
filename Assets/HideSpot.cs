@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class HideSpot : MonoBehaviour
 {
+    public event Action OnHidden;
+
     private bool IsHidden = false;
     private GameObject Player;
 
@@ -15,19 +16,9 @@ public class HideSpot : MonoBehaviour
             other.gameObject.GetComponent<TranslationController>().enabled = IsHidden;
             other.gameObject.GetComponent<SpriteRenderer>().enabled = IsHidden;
             IsHidden = !IsHidden;
+
+            if (OnHidden != null)
+                OnHidden();
         }
-    }
-
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-
-
     }
 }

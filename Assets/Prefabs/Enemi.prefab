@@ -28,6 +28,8 @@ GameObject:
   - component: {fileID: 114406033858640346}
   - component: {fileID: 114542761387804626}
   - component: {fileID: 114491904879521486}
+  - component: {fileID: 114228189971203406}
+  - component: {fileID: 114054744525713850}
   m_Layer: 9
   m_Name: Enemi
   m_TagString: Untagged
@@ -175,6 +177,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114054744525713850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519087653788346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e4ef873e91e61499b3c67e6ae8be97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 257ba7e129de1ec42a7eb17d6db72be5, type: 3}
+  - {fileID: 8300000, guid: 5bc2331e201748f4cbb2d77690a12174, type: 3}
+  - {fileID: 8300000, guid: 0ed1d585b0f20d34a98c8259f459cdc1, type: 3}
+  - {fileID: 8300000, guid: 97ad154d7f581b04da2d3464a4d7032c, type: 3}
+  - {fileID: 8300000, guid: ebe579810f1d97140bb51cf9d90402c0, type: 3}
+  - {fileID: 8300000, guid: d88c0fbe50ad05943b64668e3db69616, type: 3}
+  - {fileID: 8300000, guid: f312cd5b705af3b479543499269f95be, type: 3}
+  - {fileID: 8300000, guid: 2aae8976352be744b98bbc2ec23945db, type: 3}
+  continous: 0
+  MaxOffset: 10
 --- !u!114 &114203193477692102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,6 +213,18 @@ MonoBehaviour:
   Angle: 15
   Distance: 5
   target: {fileID: 0}
+--- !u!114 &114228189971203406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519087653788346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ceb442a34fd764f83dd92dd0e9a1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomPlayer: {fileID: 114054744525713850}
 --- !u!114 &114406033858640346
 MonoBehaviour:
   m_ObjectHideFlags: 1
