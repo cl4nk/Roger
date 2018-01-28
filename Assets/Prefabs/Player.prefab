@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 114731430892854046}
   - component: {fileID: 114144685411904604}
   - component: {fileID: 114896452770770720}
+  - component: {fileID: 114554749689295588}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -434,6 +435,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boolKey: OnMove
+--- !u!114 &114554749689295588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1768931540554706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3026917315d6e2d458770491b9f64dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 105f9baf3d0331743a7b04816c95ff0a, type: 3}
+  - {fileID: 8300000, guid: 55cc41575901019459e9750ab7043ecb, type: 3}
+  - {fileID: 8300000, guid: cb2ad5e56fb442f4cb43011f8ed4cfbc, type: 3}
 --- !u!114 &114585152120355092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -465,6 +481,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f8c46da15eab1cb4ebd4e5a0f10b7881, type: 3}
   continous: 0
   MaxOffset: 10
+  DontPlayOnEnable: 0
 --- !u!114 &114809418510701062
 MonoBehaviour:
   m_ObjectHideFlags: 1
