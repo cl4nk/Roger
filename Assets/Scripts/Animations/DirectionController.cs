@@ -3,7 +3,6 @@
 [RequireComponent(typeof(Sprite))]
 public class DirectionController : MonoBehaviour
 {
-
     [SerializeField]
     private Transform refTransform;
     public Transform RefTransform
@@ -17,6 +16,8 @@ public class DirectionController : MonoBehaviour
             return refTransform;
         }
     }
+
+    private TranslationController controller;
 
     private SpriteRenderer renderer;
     public SpriteRenderer Renderer
@@ -33,10 +34,22 @@ public class DirectionController : MonoBehaviour
 
     public bool Inverted = false;
 
+    private void Awake()
+    {
+        controller = GetComponent<TranslationController>();
+    }
+
     public void Update()
     {
-        float angle = RefTransform.eulerAngles.z;
-        Renderer.flipX = Inverted ? !Approximately(angle, 180, 90) : Approximately(angle, 180, 90);
+        if (controller)
+        {
+            Renderer.flipX = Inverted ? controller.GoLeft : !controller.GoLeft;
+        }
+        else
+        {
+            float angle = RefTransform.eulerAngles.z;
+            Renderer.flipX = Inverted ? Approximately(angle, 180, 90) : !Approximately(angle, 180, 90);
+        }
     }
 
     private bool Approximately(float a, float b, float acceptance)

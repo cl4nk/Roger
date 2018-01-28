@@ -27,9 +27,9 @@ GameObject:
   - component: {fileID: 95185910025703948}
   - component: {fileID: 114406033858640346}
   - component: {fileID: 114542761387804626}
-  - component: {fileID: 114491904879521486}
   - component: {fileID: 114228189971203406}
   - component: {fileID: 114054744525713850}
+  - component: {fileID: 114346796130173294}
   m_Layer: 9
   m_Name: Enemi
   m_TagString: Untagged
@@ -226,6 +226,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomPlayer: {fileID: 114054744525713850}
+--- !u!114 &114346796130173294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519087653788346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7af604302291b644924577cce4d965c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refTransform: {fileID: 4433307052214222}
+  Inverted: 0
 --- !u!114 &114406033858640346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,19 +270,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Distance: 4
---- !u!114 &114491904879521486
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519087653788346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7af604302291b644924577cce4d965c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  refTransform: {fileID: 4433307052214222}
-  Inverted: 1
 --- !u!114 &114542761387804626
 MonoBehaviour:
   m_ObjectHideFlags: 1
