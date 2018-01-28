@@ -34,7 +34,8 @@ public class DirectionController : MonoBehaviour
     public void Update()
     {
         Direction dir;
-        float angle = RefTransform.localRotation.z % 360;
+        float angle = RefTransform.eulerAngles.z;
+
         if (Approximately(angle, 0, 45))
         {
             dir = Direction.East;
@@ -57,6 +58,6 @@ public class DirectionController : MonoBehaviour
 
     private bool Approximately(float a, float b, float acceptance)
     {
-        return Mathf.Abs(a - b) < acceptance;
+        return a - b < acceptance;
     }
 }
