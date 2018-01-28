@@ -3928,6 +3928,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a3acd1916c30454bb5b3a52dd2a0c3d, type: 3}
   - {fileID: 8300000, guid: 1e187a49101390a41886be6cbb977adb, type: 3}
   continous: 1
+  MaxOffset: 15
 --- !u!82 &182015127
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4271,22 +4272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b061cb143b0af4e9c50a138fed3680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnArriveEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 207992282}
-        m_MethodName: OnTriggerEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnlyOnce: 0
   target: {fileID: 0}
   AcceptanceRadius: 1
@@ -4319,6 +4304,11 @@ MonoBehaviour:
   - {fileID: 1640267212}
   - {fileID: 194935900}
   timeToPress: 1
+  toCall:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!61 &207992283
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4613,6 +4603,32 @@ Prefab:
         type: 2}
       propertyPath: moveSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 212534267737851640, guid: 5e382138fe6c60842b0c2104cc6faa3a,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 91e7c33fa3b11a24db6aabf28a977488,
+        type: 3}
+    - target: {fileID: 212534267737851640, guid: 5e382138fe6c60842b0c2104cc6faa3a,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212534267737851640, guid: 5e382138fe6c60842b0c2104cc6faa3a,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212534267737851640, guid: 5e382138fe6c60842b0c2104cc6faa3a,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212534267737851640, guid: 5e382138fe6c60842b0c2104cc6faa3a,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e382138fe6c60842b0c2104cc6faa3a, type: 2}
@@ -4952,6 +4968,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a5a851d786cb5bf42b6122cc8bd1e6f8, type: 3}
   - {fileID: 8300000, guid: 25421308841186944934a64d0eae1cb2, type: 3}
   continous: 1
+  MaxOffset: 15
 --- !u!82 &634311695
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5624,11 +5641,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GizmoSize: 0.05
---- !u!61 &1062311301 stripped
-BoxCollider2D:
-  m_PrefabParentObject: {fileID: 61054272011841370, guid: 5e382138fe6c60842b0c2104cc6faa3a,
-    type: 2}
-  m_PrefabInternal: {fileID: 433483131}
 --- !u!1 &1079637592
 GameObject:
   m_ObjectHideFlags: 0
@@ -6573,7 +6585,6 @@ MonoBehaviour:
   angle: 0
   playerTransf: {fileID: 1728447049}
   cameraDistance: 5
-  smoothTime: 0.3
 --- !u!1 &1446114599
 GameObject:
   m_ObjectHideFlags: 0
@@ -6603,33 +6614,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b061cb143b0af4e9c50a138fed3680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnArriveEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1446114602}
-        m_MethodName: OnTriggerEnter2D
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1062311301}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1446114602}
-        m_MethodName: OnTriggerExit2D
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1062311301}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnlyOnce: 0
   target: {fileID: 0}
   AcceptanceRadius: 1
@@ -6662,6 +6646,11 @@ MonoBehaviour:
   - {fileID: 2138224707}
   - {fileID: 1384295089}
   timeToPress: 1
+  toCall:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!61 &1446114603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7633,11 +7622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939da29b24371ba45a8a4bb1b6d45837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnArrive:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   player: {fileID: 1598447924}
   FinishZone: {fileID: 1745210785}
   Checkpoints: []
@@ -7683,33 +7667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b061cb143b0af4e9c50a138fed3680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnArriveEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1745210787}
-        m_MethodName: OnTriggerEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnlyOnce: 0
   target: {fileID: 0}
   AcceptanceRadius: 1
@@ -7740,6 +7697,11 @@ MonoBehaviour:
   messageToStart: 2
   toDisable: []
   timeToPress: 1
+  toCall:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!61 &1745210788
 BoxCollider2D:
   m_ObjectHideFlags: 0

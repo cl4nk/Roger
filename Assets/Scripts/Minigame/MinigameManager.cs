@@ -36,8 +36,8 @@ public class MinigameManager : Singleton<MinigameManager> {
     [SerializeField]
     private Transform answerLine;
 
-    public UnityEvent OnGoodAnswer;
-    public UnityEvent OnBadAnswer;
+    public event Action OnGoodAnswer;
+    public event Action OnBadAnswer;
 
     private int nbWord = 0;
     private int nbMaxWord;
@@ -105,7 +105,6 @@ public class MinigameManager : Singleton<MinigameManager> {
         if (nbWord == 0)
             return;
         nbWord--;
-        UnityEngine.Debug.Log("pouet");
 
         sentenceWord.Remove(butt.word);
 

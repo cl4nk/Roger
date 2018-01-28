@@ -17,6 +17,9 @@ public class Checkpoint : MonoBehaviour {
     [SerializeField]
     private float timeToPress = 1.0f;
 
+    [SerializeField]
+    private UnityEvent toCall;
+
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -62,26 +65,26 @@ public class Checkpoint : MonoBehaviour {
 
         SceneManager.LoadScene("TestMiniGame", LoadSceneMode.Additive);
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => {
-            MinigameManager.Instance.OnGoodAnswer = new UnityEvent();
-            MinigameManager.Instance.OnBadAnswer = new UnityEvent();
-            MinigameManager.Instance.OnGoodAnswer.AddListener(() => {
+            MinigameManager.Instance.OnGoodAnswer += (() => {
                 for (int i = 0; i < toDisable.Length; i++)
                 {
                     if (toDisable[i] != null)
                         Destroy(toDisable[i]);
                 }
                 Destroy(gameObject);
+                toCall.Invoke();
                 player.GetComponent<TranslationController>().enabled = true;
                 SceneManager.UnloadSceneAsync("TestMiniGame");
 
             });
-            MinigameManager.Instance.OnBadAnswer.AddListener(() => {
+            MinigameManager.Instance.OnBadAnswer += (() => {
                 for (int i = 0; i < toDisable.Length; i++)
                 {
                     if (toDisable[i] != null)
                         Destroy(toDisable[i]);
                 }
                 Destroy(gameObject);
+                toCall.Invoke();
                 player.GetComponent<TranslationController>().enabled = true;
                 SceneManager.UnloadSceneAsync("TestMiniGame");
             });

@@ -42,6 +42,8 @@ public class RandomAudioSource : MonoBehaviour
         }
     }
 
+    public float MaxOffset = 10.0f;
+
     private Coroutine coroutine;
 
     public void OnEnable()
@@ -69,11 +71,15 @@ public class RandomAudioSource : MonoBehaviour
         {
             if (!Source.isPlaying)
             {
+                yield return new WaitForSeconds(Random.Range(0, MaxOffset));
+
                 Source.clip = clips[Random.Range(0, clips.Length)];
                 Source.Play();
-                Debug.Log("Clip changed");
             }
-            yield return null;
+            else
+            {
+                yield return null;
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ public class CommandDisplayer : MonoBehaviour
     {
         if (controller)
         {
-            controller.OnCommandEvent.AddListener(SetSprite);
+            controller.OnCommandEvent += SetSprite;
         }
     }
 
@@ -21,7 +21,7 @@ public class CommandDisplayer : MonoBehaviour
     {
         if (controller)
         {
-            controller.OnCommandEvent.RemoveListener(SetSprite);
+            controller.OnCommandEvent -= SetSprite;
         }
     }
 

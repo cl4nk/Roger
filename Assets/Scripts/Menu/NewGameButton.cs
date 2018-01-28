@@ -7,6 +7,6 @@ public class NewGameButton : MonoBehaviour {
 
     public void NewGame()
     {
-        SceneManager.LoadScene("Test3C");
+        SceneManager.LoadScene("MainScene");
     }
 }

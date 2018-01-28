@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class InteractiveController : MonoBehaviour
 {
-    public UnityEvent<InteractiveObject> OnInteractiveObjectChange;
+    public event Action<InteractiveObject> OnInteractiveObjectChange;
 
     private InteractiveObject nearObject;
     public InteractiveObject NearObject

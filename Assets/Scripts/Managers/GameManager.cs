@@ -16,8 +16,8 @@ public class GameManager : Singleton<GameManager>
         Intro, Play, GameOver, Count
     }
 
-    public UnityEvent<State> OnStateChanged;
-    public UnityEvent<Step> OnStepChanged;
+    public event Action<State> OnStateChanged;
+    public event Action<Step> OnStepChanged;
 
 
     private State currentState;
@@ -48,15 +48,19 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void OnEnable()
+    public void Start()
     {
-        OnStateChanged.AddListener(HandleStateChange);
+        OnStateChanged += HandleStateChange;
+        OnStepChanged += HandleStepChange;
+        Player.Instance.GetComponent<Character>().OnDeathEvent += GameOver;
+        CurrentStep = Step.Intro;
     }
 
     public void OnDisable()
     {
-        OnStateChanged.RemoveListener(HandleStateChange);
-
+        OnStepChanged -= HandleStepChange;
+        OnStateChanged -= HandleStateChange;
+        Player.Instance.GetComponent<Character>().OnDeathEvent -= GameOver;
     }
 
     private void HandleStateChange(State state)
@@ -74,6 +78,33 @@ public class GameManager : Singleton<GameManager>
             default:
                 throw new ArgumentOutOfRangeException("state", state, null);
         }
+    }
+
+    private void HandleStepChange(GameManager.Step step)
+    {
+        switch (step)
+        {
+            case GameManager.Step.Intro:
+                Invoke("GoToPlayStep", 1.0f);
+                break;
+            case GameManager.Step.Play:
+                break;
+            case GameManager.Step.GameOver:
+                Time.timeScale = 0.0f;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException("step", step, null);
+        }
+    }
+
+    private void GoToPlayStep()
+    {
+        CurrentStep = Step.Play;
+    }
+
+    private void GameOver()
+    {
+        CurrentStep = Step.GameOver;
     }
 
     private void OnApplicationPause(bool pauseStatus)
