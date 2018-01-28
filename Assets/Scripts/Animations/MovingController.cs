@@ -30,21 +30,22 @@ public class MovingController : MonoBehaviour
         }
     }
 
-    public float AcceptanceRadius = 0.001f;
-
     private Vector3 LastPosition;
 
     [SerializeField]
     private string boolKey;
 
+	public float Distance;
+
     public void Start()
     {
-        LastPosition = transform.position;
+		LastPosition = RefTransform.position;
     }
 
     public void Update()
     {
-        Controller.SetBool(boolKey, Vector3.Distance(LastPosition, RefTransform.position) > AcceptanceRadius);
+		Distance = Vector3.Distance (LastPosition, RefTransform.position);
+		Controller.SetBool(boolKey, Distance != 0.0f);
         LastPosition = RefTransform.position;
     }
 }
