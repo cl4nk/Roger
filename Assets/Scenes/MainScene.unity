@@ -3871,6 +3871,8 @@ MonoBehaviour:
   - {fileID: 226450428}
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &87356616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4150,6 +4152,8 @@ MonoBehaviour:
   pathPoints: []
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &194935902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4791,6 +4795,8 @@ MonoBehaviour:
   pathPoints: []
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &553080115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5367,6 +5373,8 @@ MonoBehaviour:
   - {fileID: 1625704370}
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &993028466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5854,6 +5862,8 @@ MonoBehaviour:
   pathPoints: []
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &1276022864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6129,6 +6139,8 @@ MonoBehaviour:
   pathPoints: []
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &1384295091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6588,6 +6600,8 @@ MonoBehaviour:
   pathPoints: []
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &1512730949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6974,6 +6988,8 @@ MonoBehaviour:
   pathPoints: []
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &1640267214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7549,6 +7565,16 @@ Prefab:
     - target: {fileID: 1519087653788346, guid: 370372884380cc64aad678773028e87e, type: 2}
       propertyPath: m_Name
       value: Enemi (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 82867554914384408, guid: 370372884380cc64aad678773028e87e,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a808542f61d0b894082964cc2a6e040a, type: 3}
+    - target: {fileID: 82867554914384408, guid: 370372884380cc64aad678773028e87e,
+        type: 2}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 370372884380cc64aad678773028e87e, type: 2}
@@ -13400,6 +13426,8 @@ MonoBehaviour:
   - {fileID: 2002247668}
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &2035833289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13679,6 +13707,8 @@ MonoBehaviour:
   pathPoints: []
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &2063659546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13937,6 +13967,8 @@ MonoBehaviour:
   pathPoints: []
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &2138224709
 MonoBehaviour:
   m_ObjectHideFlags: 0

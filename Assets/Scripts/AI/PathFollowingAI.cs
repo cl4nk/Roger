@@ -78,6 +78,8 @@ public class PathFollowingAI : MonoBehaviour
 
     private Vector3? GetTarget()
     {
+        if (pathPoints == null)
+            return null;
         if (pathPoints.Length == 0)
             return null;
 
