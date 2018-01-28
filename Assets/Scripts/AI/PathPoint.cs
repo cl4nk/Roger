@@ -2,9 +2,11 @@
 
 public class PathPoint : MonoBehaviour
 {
+    public float GizmoSize = 0.05f;
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, 0.01f);
+        Gizmos.DrawSphere(transform.position, GizmoSize);
     }
 }
