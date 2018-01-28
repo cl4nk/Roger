@@ -4575,7 +4575,7 @@ Prefab:
     - target: {fileID: 114992638790286118, guid: 5e382138fe6c60842b0c2104cc6faa3a,
         type: 2}
       propertyPath: Angle
-      value: 40
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4768608863340514, guid: 5e382138fe6c60842b0c2104cc6faa3a, type: 2}
       propertyPath: m_LocalScale.x
