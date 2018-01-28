@@ -105,7 +105,6 @@ public class MinigameManager : Singleton<MinigameManager> {
         if (nbWord == 0)
             return;
         nbWord--;
-        UnityEngine.Debug.Log("pouet");
 
         sentenceWord.Remove(butt.word);
 
