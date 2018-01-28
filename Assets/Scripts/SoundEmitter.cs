@@ -20,12 +20,38 @@ public class SoundEmitter : MonoBehaviour
         }
     }
 
-    public DistanceFilter RefDistanceFilter;
-    public DirectionnalFilter RefDirectionnalFilter;
+    [SerializeField]
+    private DistanceFilter refDistanceFilter;
+    public DistanceFilter RefDistanceFilter
+    {
+        get
+        {
+            if (refDistanceFilter == null)
+            {
+                refDistanceFilter = Player.Instance.GetComponentInChildren<DistanceFilter>();
+            }
+            return refDistanceFilter;
+        }
+    }
+
+    [SerializeField]
+    private DirectionnalFilter refDirectionnalFilter;
+    public DirectionnalFilter RefDirectionnalFilter
+    {
+        get
+        {
+            if (refDirectionnalFilter == null)
+            {
+                refDirectionnalFilter = Player.Instance.GetComponentInChildren<DirectionnalFilter>();
+            }
+            return refDirectionnalFilter;
+        }
+    }
 
     public void Awake()
     {
         Emitters.Add(this);
+        Source.spatialBlend = 0.0f;
     }
 
     public void OnDestroy()
@@ -42,8 +68,7 @@ public class SoundEmitter : MonoBehaviour
     {
         if (RefDistanceFilter)
         {
-            Source.volume = Vector3.Distance(transform.position, RefDistanceFilter.transform.position) /
-                            RefDistanceFilter.CurrentDistance;
+            Source.volume = RefDistanceFilter.GetVolume(transform.position);
         }
 
         if (RefDirectionnalFilter)

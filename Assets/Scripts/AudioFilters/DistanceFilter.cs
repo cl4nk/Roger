@@ -17,13 +17,14 @@ public class DistanceFilter : MonoBehaviour, ICommand
         }
     }
 
-
     public float MaxDistance = 15.0f;
     public float MinDistance = 0.5f;
 
     public float Speed = 2.0f;
 
     public float IndicationDuration = 2.0f;
+
+    public AnimationCurve Curve = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 0));
 
     private float HideTime = 0.0f;
 
@@ -39,6 +40,12 @@ public class DistanceFilter : MonoBehaviour, ICommand
         Gizmos.color = Color.yellow;
 
         Gizmos.DrawWireSphere(transform.position, CurrentDistance);
+    }
+
+    public float GetVolume(Vector3 position)
+    {
+        return Curve.Evaluate(Vector3.Distance(position, transform.position) /
+                                CurrentDistance);
     }
 
     public void OnCommandEnable()

@@ -15,7 +15,7 @@ public class PathFollowingAI : MonoBehaviour
     private int currentDestination = 0;
     private int increment = 1;
 
-    private Vector3? TempDirection;
+    private Quaternion? TempRotation;
 
     public float FixedDirectionDuration = 2.0f;
 
@@ -45,16 +45,16 @@ public class PathFollowingAI : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     {
-        if (TempDirection.HasValue)
+        if (TempRotation.HasValue)
         {
             if (fixedDirectionTime > Time.time)
             {
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(TempDirection.Value, Vector3.forward), rotationSpeed * Time.deltaTime);
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, TempRotation.Value, rotationSpeed * Time.deltaTime);
                 return;
             }
             else
             {
-                TempDirection = null;
+                TempRotation = null;
             }
         }
 
@@ -78,6 +78,8 @@ public class PathFollowingAI : MonoBehaviour
 
     private Vector3? GetTarget()
     {
+        if (pathPoints == null)
+            return null;
         if (pathPoints.Length == 0)
             return null;
 
@@ -104,7 +106,10 @@ public class PathFollowingAI : MonoBehaviour
 
     public void SetTempDestination(Vector3 position)
     {
-        TempDirection = position - transform.position;
+        Vector3 direction = position - transform.position;
+        TempRotation = Quaternion.LookRotation(direction, Vector3.forward);
+        float angle = Vector3.Angle(Vector3.right, direction);
+        TempRotation = Quaternion.Euler(0, 0, angle * Mathf.Sign(direction.y));
 
         fixedDirectionTime = FixedDirectionDuration + Time.time;
     }
