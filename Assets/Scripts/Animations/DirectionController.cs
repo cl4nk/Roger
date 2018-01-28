@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Sprite))]
 public class DirectionController : MonoBehaviour
 {
-    enum Direction { North, East, South, West };
 
     [SerializeField]
     private Transform refTransform;
@@ -18,41 +18,25 @@ public class DirectionController : MonoBehaviour
         }
     }
 
-    private Animator controller;
-    public Animator Controller
+    private SpriteRenderer renderer;
+    public SpriteRenderer Renderer
     {
         get
         {
-            if (controller == null)
+            if (renderer == null)
             {
-                controller = GetComponent<Animator>();
+                renderer = GetComponent<SpriteRenderer>();
             }
-            return controller;
+            return renderer;
         }
     }
 
+    public bool Inverted = false;
+
     public void Update()
     {
-        Direction dir;
-        float angle = RefTransform.localRotation.z % 360;
-        if (Approximately(angle, 0, 45))
-        {
-            dir = Direction.East;
-        }
-        else if (Approximately(angle, 90, 45))
-        {
-            dir = Direction.North;
-        }
-        else if (Approximately(angle, 180, 45))
-        {
-            dir = Direction.West;
-        }
-        else
-        {
-            dir = Direction.South;
-        }
-
-        Controller.SetTrigger(dir.ToString());
+        float angle = RefTransform.eulerAngles.z;
+        Renderer.flipX = Inverted ? !Approximately(angle, 180, 90) : Approximately(angle, 180, 90);
     }
 
     private bool Approximately(float a, float b, float acceptance)

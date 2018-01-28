@@ -1,22 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 public class MovingController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform refTransform;
-    public Transform RefTransform
-    {
-        get
-        {
-            if (refTransform == null)
-            {
-                refTransform = transform;
-            }
-            return refTransform;
-        }
-    }
-
     private Animator controller;
     public Animator Controller
     {
@@ -30,22 +17,25 @@ public class MovingController : MonoBehaviour
         }
     }
 
-    private Vector3 LastPosition;
+    private IMoving moving;
+    public IMoving Moving
+    {
+        get
+        {
+            if (moving == null)
+            {
+                moving = GetComponent<IMoving>();
+            }
+            return moving;
+        }
+    }
 
     [SerializeField]
     private string boolKey;
 
-	public float Distance;
-
-    public void Start()
-    {
-		LastPosition = RefTransform.position;
-    }
-
     public void Update()
     {
-		Distance = Vector3.Distance (LastPosition, RefTransform.position);
-		Controller.SetBool(boolKey, Distance != 0.0f);
-        LastPosition = RefTransform.position;
+        Controller.SetBool(boolKey, Moving.IsMoving());
     }
+
 }

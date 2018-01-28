@@ -26,6 +26,10 @@ GameObject:
   - component: {fileID: 114765458172269492}
   - component: {fileID: 95185910025703948}
   - component: {fileID: 114406033858640346}
+  - component: {fileID: 114542761387804626}
+  - component: {fileID: 114491904879521486}
+  - component: {fileID: 114228189971203406}
+  - component: {fileID: 114054744525713850}
   m_Layer: 9
   m_Name: Enemi
   m_TagString: Untagged
@@ -56,7 +60,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519087653788346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.97, y: -22.79, z: 0}
+  m_LocalPosition: {x: 13.869999, y: -38.550003, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4433307052214222}
@@ -69,13 +73,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1945337545782628}
-  m_LocalRotation: {x: 0, y: 0, z: -0.74422985, w: 0.66792357}
+  m_LocalRotation: {x: 0, y: 0, z: -0.0005409753, w: 0.99999994}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4368331198975802}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -96.186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.062}
 --- !u!82 &82867554914384408
 AudioSource:
   m_ObjectHideFlags: 1
@@ -84,7 +88,8 @@ AudioSource:
   m_GameObject: {fileID: 1519087653788346}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243795582440063392, guid: 24f44e8235b19564193aadfbb4e0128b,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -165,7 +170,7 @@ Animator:
   m_GameObject: {fileID: 1519087653788346}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5c366828e71e5441a66a4adcd8e0ac9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -173,6 +178,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114054744525713850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519087653788346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e4ef873e91e61499b3c67e6ae8be97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 257ba7e129de1ec42a7eb17d6db72be5, type: 3}
+  - {fileID: 8300000, guid: 5bc2331e201748f4cbb2d77690a12174, type: 3}
+  - {fileID: 8300000, guid: 0ed1d585b0f20d34a98c8259f459cdc1, type: 3}
+  - {fileID: 8300000, guid: 97ad154d7f581b04da2d3464a4d7032c, type: 3}
+  - {fileID: 8300000, guid: ebe579810f1d97140bb51cf9d90402c0, type: 3}
+  - {fileID: 8300000, guid: d88c0fbe50ad05943b64668e3db69616, type: 3}
+  - {fileID: 8300000, guid: f312cd5b705af3b479543499269f95be, type: 3}
+  - {fileID: 8300000, guid: 2aae8976352be744b98bbc2ec23945db, type: 3}
+  continous: 0
+  MaxOffset: 10
 --- !u!114 &114203193477692102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,6 +214,18 @@ MonoBehaviour:
   Angle: 15
   Distance: 5
   target: {fileID: 0}
+--- !u!114 &114228189971203406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519087653788346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ceb442a34fd764f83dd92dd0e9a1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomPlayer: {fileID: 114054744525713850}
 --- !u!114 &114406033858640346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,7 +244,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5e1d7364729c56f4aac300e4c9ccd9bd, type: 3}
   - {fileID: 8300000, guid: a5c8cd4384e2b3f40a03c8e0254fe3a7, type: 3}
   continous: 1
-  MaxOffset: 5
+  MaxOffset: 3
 --- !u!114 &114479822811362266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,6 +257,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Distance: 4
+--- !u!114 &114491904879521486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519087653788346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7af604302291b644924577cce4d965c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refTransform: {fileID: 4433307052214222}
+  Inverted: 1
+--- !u!114 &114542761387804626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519087653788346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac66d270bb0d7446b6d5259cc9a12b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boolKey: OnMove
 --- !u!114 &114765458172269492
 MonoBehaviour:
   m_ObjectHideFlags: 1
