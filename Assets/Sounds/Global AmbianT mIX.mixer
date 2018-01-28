@@ -66,7 +66,11 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: d319f78a03108da4fbce564671b225a2
   m_FloatValues:
-    cfa4f1e2e93aee64ab2d6dcc6948214a: 0
+    2ed1b75021ac30343999ecbb6a57d772: 500
+    cfa4f1e2e93aee64ab2d6dcc6948214a: 2.090601
+    75612e946ca30b1419d6ca3703932555: 700
+    cee8e9b6e11c420438deee04ce6091e2: -0.025776565
+    18764b67bd9a6594abd8fc1eac208f09: -9.833291
     5e29d7dd61b97f34797aeb5acc732ecb: -0.16685188
   m_TransitionOverrides: {}
 --- !u!243 &243114711059689082
@@ -82,6 +86,8 @@ AudioMixerGroupController:
   m_Pitch: f86159efd05fedb4a90e18de0f2fad3d
   m_Effects:
   - {fileID: 244273387169552010}
+  - {fileID: 244192082884658714}
+  - {fileID: 244274588722967660}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -120,6 +126,23 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &244192082884658714
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 3e85bdf7dc51a0f469f6867b744f3636
+  m_EffectName: Lowpass
+  m_MixLevel: 74ac72276ddad6d48a8d921b5196eb1f
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: 75612e946ca30b1419d6ca3703932555
+  - m_ParameterName: Resonance
+    m_GUID: 125e093a2e852fa43b71858e6f601449
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &244273387169552010
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -130,6 +153,23 @@ AudioMixerEffectController:
   m_EffectName: Attenuation
   m_MixLevel: 5984e28cb13239447bfc34e642699dd2
   m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244274588722967660
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 455a36744c766cb4f872a02bc21ab49e
+  m_EffectName: Highpass
+  m_MixLevel: 7f0368f494b4bd54ba476251fa5e6010
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: 2ed1b75021ac30343999ecbb6a57d772
+  - m_ParameterName: Resonance
+    m_GUID: ae2ce207fe51fc146aad04ce29d3f451
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
