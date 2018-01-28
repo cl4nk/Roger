@@ -1,10 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 
 public class PathFollowingAI : MonoBehaviour
 {
+    [SerializeField]
+    private Transform refTransform;
+    public Transform RefTransform
+    {
+        get
+        {
+            if (refTransform == null)
+            {
+                refTransform = transform;
+            }
+            return refTransform;
+        }
+    }
+
     [SerializeField]
     private Transform[] pathPoints;
     [SerializeField]
@@ -20,6 +31,7 @@ public class PathFollowingAI : MonoBehaviour
     public float FixedDirectionDuration = 2.0f;
 
     private NoiseDetection noiseDetection;
+
     [SerializeField]
     private float rotationSpeed = 10.0f;
 
@@ -49,7 +61,7 @@ public class PathFollowingAI : MonoBehaviour
         {
             if (fixedDirectionTime > Time.time)
             {
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, TempRotation.Value, rotationSpeed * Time.deltaTime);
+                RefTransform.localRotation = Quaternion.Slerp(RefTransform.localRotation, TempRotation.Value, rotationSpeed * Time.deltaTime);
                 return;
             }
             else
@@ -62,7 +74,7 @@ public class PathFollowingAI : MonoBehaviour
         if (target == null)
             return;
 
-        Vector3 direction = target.Value - transform.position;
+        Vector3 direction = target.Value - RefTransform.position;
         direction.Normalize();
 
         transform.position += (direction * Time.deltaTime * speed);
@@ -70,7 +82,7 @@ public class PathFollowingAI : MonoBehaviour
         //direction = new Vector3(direction.y, -direction.x);
 
         float angle = Vector3.Angle(Vector3.right, direction);
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 0, angle * Mathf.Sign(direction.y)), rotationSpeed * Time.deltaTime);
+        RefTransform.localRotation = Quaternion.Slerp(RefTransform.localRotation, Quaternion.Euler(0, 0, angle * Mathf.Sign(direction.y)), rotationSpeed * Time.deltaTime);
 
         if (HasReachDestination())
         {
