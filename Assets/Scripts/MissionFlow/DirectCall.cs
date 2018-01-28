@@ -13,7 +13,7 @@ public class DirectCall : MonoBehaviour {
     public AudioClip clip3;
     public AudioClip endMusic;
     public AudioSource source;
-    public AudioMixer mixer;
+
 
     public AudioSource ambiant;
 
