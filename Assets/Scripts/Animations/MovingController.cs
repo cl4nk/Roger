@@ -4,20 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class MovingController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform refTransform;
-    public Transform RefTransform
-    {
-        get
-        {
-            if (refTransform == null)
-            {
-                refTransform = transform;
-            }
-            return refTransform;
-        }
-    }
-
     private Animator controller;
     public Animator Controller
     {
@@ -31,37 +17,25 @@ public class MovingController : MonoBehaviour
         }
     }
 
-    private Vector3 LastPosition;
+    private IMoving moving;
+    public IMoving Moving
+    {
+        get
+        {
+            if (moving == null)
+            {
+                moving = GetComponent<IMoving>();
+            }
+            return moving;
+        }
+    }
 
     [SerializeField]
     private string boolKey;
 
-    private Coroutine couroutine;
-
-    public void OnEnable()
+    public void Update()
     {
-        LastPosition = transform.position;
-        couroutine = StartCoroutine(CalcVelocity());
+        Controller.SetBool(boolKey, Moving.IsMoving());
     }
 
-    public void OnDisable()
-    {
-        if (couroutine != null)
-        {
-            StopCoroutine(couroutine);
-        }
-    }
-
-    IEnumerator CalcVelocity()
-    {
-        while (true)
-        {
-            // Position at frame start
-            LastPosition = transform.position;
-            // Wait till it the end of the frame
-            yield return new WaitForEndOfFrame();
-            // Calculate velocity: Velocity = DeltaPosition / DeltaTime
-            Controller.SetBool(boolKey, ((LastPosition - transform.position) / Time.deltaTime).magnitude > AcceptanceRadius);
-        }
-    }
 }

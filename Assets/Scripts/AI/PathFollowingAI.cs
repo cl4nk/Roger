@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PathFollowingAI : MonoBehaviour
+public class PathFollowingAI : MonoBehaviour, IMoving
 {
     [SerializeField]
     private Transform refTransform;
@@ -37,6 +37,8 @@ public class PathFollowingAI : MonoBehaviour
 
     private float fixedDirectionTime = 0.0f;
 
+    private bool isMoving;
+
     public void OnEnable()
     {
         noiseDetection = GetComponent<NoiseDetection>();
@@ -56,7 +58,9 @@ public class PathFollowingAI : MonoBehaviour
 
 	// Update is called once per frame
 	private void Update ()
-    {
+	{
+	    isMoving = false;
+
         if (TempRotation.HasValue)
         {
             if (fixedDirectionTime > Time.time)
@@ -73,6 +77,8 @@ public class PathFollowingAI : MonoBehaviour
         Vector3? target = GetTarget();
         if (target == null)
             return;
+
+	    isMoving = true;
 
         Vector3 direction = target.Value - RefTransform.position;
         direction.Normalize();
@@ -134,5 +140,10 @@ public class PathFollowingAI : MonoBehaviour
             return;
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(target.Value, reachMargin);
+    }
+
+    public bool IsMoving()
+    {
+        return isMoving;
     }
 }
