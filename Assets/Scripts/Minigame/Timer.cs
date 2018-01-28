@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Timer : MonoBehaviour {
 
@@ -9,7 +7,7 @@ public class Timer : MonoBehaviour {
     private float delay = 10.0f;
 
     [SerializeField]
-    private UnityEvent OnTimerFinished;
+    private event Action OnTimerFinished;
 
     public float currDelay { get; private set; }
     private bool isRunning = true;

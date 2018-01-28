@@ -62,9 +62,7 @@ public class Checkpoint : MonoBehaviour {
 
         SceneManager.LoadScene("TestMiniGame", LoadSceneMode.Additive);
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => {
-            MinigameManager.Instance.OnGoodAnswer = new UnityEvent();
-            MinigameManager.Instance.OnBadAnswer = new UnityEvent();
-            MinigameManager.Instance.OnGoodAnswer.AddListener(() => {
+            MinigameManager.Instance.OnGoodAnswer += (() => {
                 for (int i = 0; i < toDisable.Length; i++)
                 {
                     if (toDisable[i] != null)
@@ -75,7 +73,7 @@ public class Checkpoint : MonoBehaviour {
                 SceneManager.UnloadSceneAsync("TestMiniGame");
 
             });
-            MinigameManager.Instance.OnBadAnswer.AddListener(() => {
+            MinigameManager.Instance.OnBadAnswer += (() => {
                 for (int i = 0; i < toDisable.Length; i++)
                 {
                     if (toDisable[i] != null)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class CommandController : MonoBehaviour
@@ -26,7 +27,7 @@ public class CommandController : MonoBehaviour
         }
     }
 
-    public UnityEvent<int> OnCommandEvent;
+    public event Action<int> OnCommandEvent;
 
     [SerializeField]
     private string leftBump = "LeftBump";

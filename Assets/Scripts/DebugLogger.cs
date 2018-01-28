@@ -13,14 +13,14 @@ public class DebugLogger : Singleton<DebugLogger>
 
         if (Character)
         {
-            Character.OnDamageTakenEvent.AddListener(LogDamageTaken);
-            Character.OnDeathEvent.AddListener(LogDeath);
+            Character.OnDamageTakenEvent += LogDamageTaken;
+            Character.OnDeathEvent += LogDeath;
 
         }
 
         if (CommandController)
         {
-            CommandController.OnCommandEvent.AddListener(LogCommandChanged);
+            CommandController.OnCommandEvent += LogCommandChanged;
         }
     }
 
@@ -32,14 +32,14 @@ public class DebugLogger : Singleton<DebugLogger>
 
         if (Character)
         {
-            Character.OnDamageTakenEvent.RemoveListener(LogDamageTaken);
-            Character.OnDeathEvent.RemoveListener(LogDeath);
+            Character.OnDamageTakenEvent -= LogDamageTaken;
+            Character.OnDeathEvent -= LogDeath;
 
         }
 
         if (CommandController)
         {
-            CommandController.OnCommandEvent.RemoveListener(LogCommandChanged);
+            CommandController.OnCommandEvent -= LogCommandChanged;
         }
     }
 

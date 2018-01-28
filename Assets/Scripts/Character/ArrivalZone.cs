@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ArrivalZone : MonoBehaviour
 {
     public static event Action<ArrivalZone> StaticOnArriveEvent;
-    public UnityEvent OnArriveEvent;
+    public event Action OnArriveEvent;
 
     public bool OnlyOnce = false;
 
@@ -55,20 +55,13 @@ public class ArrivalZone : MonoBehaviour
     {
         AlreadyTriggered = true;
         PlayerIsInZone = false;
-        OnArriveEvent.AddListener(OnArrive);
+        OnArriveEvent += OnArrive;
     }
 
     public void OnDisable()
     {
         AlreadyTriggered = false;
-        OnArriveEvent.AddListener(OnArrive);
-    }
-
-    private Checkpoint checkpoint;
-
-    public void Start()
-    {
-        checkpoint = GetComponent<Checkpoint>();
+        OnArriveEvent -= OnArrive;
     }
 
     public void Update()

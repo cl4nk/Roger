@@ -17,14 +17,14 @@ public class GUIManager : Singleton<GUIManager>
 
     public void OnEnable()
     {
-        GameManager.Instance.OnStateChanged.AddListener(HandleStateChange);
-        GameManager.Instance.OnStepChanged.AddListener(HandleStepChange);
+        GameManager.Instance.OnStateChanged += HandleStateChange;
+        GameManager.Instance.OnStepChanged += HandleStepChange;
     }
 
     public void OnDisable()
     {
-        GameManager.Instance.OnStateChanged.RemoveListener(HandleStateChange);
-        GameManager.Instance.OnStepChanged.RemoveListener(HandleStepChange);
+        GameManager.Instance.OnStateChanged -= HandleStateChange;
+        GameManager.Instance.OnStepChanged -= HandleStepChange;
     }
 
     private void HandleStateChange(GameManager.State state)

@@ -9,10 +9,6 @@ public class PlayerCamera : MonoBehaviour {
     private Transform playerTransf;
     [SerializeField]
     private float cameraDistance = 5;
-    [SerializeField]
-    private float smoothTime = 0.3f;
-
-    private Vector3 velocity;
 
     void Start ()
     {

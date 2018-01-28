@@ -8,7 +8,7 @@ public class VisualDetection : MonoBehaviour
 {
     public static event Action<VisualDetection, Transform> StaticOnPlayerDetected;
 
-    public UnityEvent<Transform> OnPlayerDetected;
+    public event Action<Transform> OnPlayerDetected;
 
     [Range(0, 360)]
     public float Angle = 15.0f;

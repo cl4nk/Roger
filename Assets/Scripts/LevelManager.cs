@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
-    public UnityEvent OnArrive;
+    public event Action OnArrive;
 
     [SerializeField]
     private Character player;
@@ -25,11 +26,18 @@ public class LevelManager : MonoBehaviour
     {
         lastCheckpoint = Player.transform.position;
 
-        Player.OnDeathEvent.AddListener(RespawnPlayer);
-        FinishZone.OnArriveEvent.AddListener(OnArrive.Invoke);
+        Player.OnDeathEvent += RespawnPlayer;
+        FinishZone.OnArriveEvent += FinishZone_OnArriveEvent;
+        ;
 
         VisualDetection.StaticOnPlayerDetected += OnPlayerDetected;
         ArrivalZone.StaticOnArriveEvent += SaveCheckpoint;
+    }
+
+    private void FinishZone_OnArriveEvent()
+    {
+        if (OnArrive != null)
+            OnArrive();
     }
 
     private void OnPlayerDetected(VisualDetection finder, Transform found)
@@ -45,8 +53,8 @@ public class LevelManager : MonoBehaviour
         ArrivalZone.StaticOnArriveEvent -= SaveCheckpoint;
         VisualDetection.StaticOnPlayerDetected -= OnPlayerDetected;
 
-        Player.OnDeathEvent.RemoveListener(RespawnPlayer);
-        FinishZone.OnArriveEvent.RemoveListener(OnArrive.Invoke);
+        Player.OnDeathEvent -= RespawnPlayer;
+        FinishZone.OnArriveEvent -= FinishZone_OnArriveEvent;
     }
 
     private void SaveCheckpoint(ArrivalZone zone)
