@@ -45,14 +45,18 @@ public class RandomAudioSource : MonoBehaviour
     public float MaxOffset = 10.0f;
 
     private Coroutine coroutine;
-
+	[SerializeField]
+	private bool DontPlayOnEnable = false;
     public void OnEnable()
     {
-        Play();
-        if (Continous)
-        {
-            coroutine = StartCoroutine(ContinousCoroutine());
-        }
+		if (DontPlayOnEnable == false) 
+		{
+			Play ();
+			if (Continous) 
+			{
+				coroutine = StartCoroutine (ContinousCoroutine ());
+			}
+		}
     }
 
     private void OnDisable()
