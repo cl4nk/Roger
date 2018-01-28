@@ -377,20 +377,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      time: -0.00258255
+      value: 1.0562439
+      inSlope: -1.090775
+      outSlope: -1.090775
       tangentMode: 0
     - serializedVersion: 2
-      time: 1
+      time: 0.8191223
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.2340473
+      outSlope: -1.2340473
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!114 &114894615539807292
 MonoBehaviour:
   m_ObjectHideFlags: 1
