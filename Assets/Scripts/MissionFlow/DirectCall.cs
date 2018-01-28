@@ -73,14 +73,6 @@ public class DirectCall : MonoBehaviour {
             yield return null;
         }
 
-        source.clip = clip3;
-        source.Play();
-
-        while (source.isPlaying)
-        {
-            yield return null;
-        }
-
         source.clip = endMusic;
         source.Play();
 

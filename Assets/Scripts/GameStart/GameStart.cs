@@ -17,7 +17,7 @@ public class GameStart : MonoBehaviour {
     void Start () {
         Player.Instance.GetComponent<TranslationController>().enabled = false;
         ambiant.outputAudioMixerGroup.audioMixer.SetFloat("Volume", -80.0f);
-
+        StartCoroutine(BeginGame());
     }
 
     IEnumerator BeginGame()
