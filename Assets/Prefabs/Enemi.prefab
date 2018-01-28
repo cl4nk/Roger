@@ -22,11 +22,28 @@ GameObject:
   - component: {fileID: 82867554914384408}
   - component: {fileID: 114967847844411500}
   - component: {fileID: 212503945077520740}
-  - component: {fileID: 114065100336509390}
   - component: {fileID: 114479822811362266}
   - component: {fileID: 114765458172269492}
+  - component: {fileID: 95185910025703948}
+  - component: {fileID: 114406033858640346}
   m_Layer: 9
   m_Name: Enemi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1945337545782628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4433307052214222}
+  - component: {fileID: 114203193477692102}
+  m_Layer: 9
+  m_Name: Rotation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,8 +58,22 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4433307052214222}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4433307052214222
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1945337545782628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4368331198975802}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &82867554914384408
@@ -125,7 +156,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114065100336509390
+--- !u!95 &95185910025703948
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519087653788346}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114203193477692102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1945337545782628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad405c4238781b744ac88e5ba285798d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Angle: 15
+  Distance: 5
+  target: {fileID: 0}
+--- !u!114 &114406033858640346
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -133,12 +195,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1519087653788346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad405c4238781b744ac88e5ba285798d, type: 3}
+  m_Script: {fileID: 11500000, guid: c7e4ef873e91e61499b3c67e6ae8be97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Angle: 10
-  Distance: 6
-  target: {fileID: 0}
+  clips:
+  - {fileID: 8300000, guid: 73914902eace8ef42ad1d1cfc113f81d, type: 3}
+  - {fileID: 8300000, guid: bbc04596535a55b488f5ad2d15804a6b, type: 3}
+  - {fileID: 8300000, guid: 51dfbe7c480bf3647acc8b660c97ea9e, type: 3}
+  - {fileID: 8300000, guid: 5e1d7364729c56f4aac300e4c9ccd9bd, type: 3}
+  - {fileID: 8300000, guid: a5c8cd4384e2b3f40a03c8e0254fe3a7, type: 3}
+  continous: 1
+  MaxOffset: 5
 --- !u!114 &114479822811362266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,9 +229,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602176656db0611439207f22a8f02525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  refTransform: {fileID: 4433307052214222}
   pathPoints: []
   speed: 1
   reachMargin: 0.2
+  FixedDirectionDuration: 2
+  rotationSpeed: 10
 --- !u!114 &114967847844411500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,8 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66858444d6215ba40be705b33674996d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RefDistanceFilter: {fileID: 0}
-  RefDirectionnalFilter: {fileID: 0}
+  refDistanceFilter: {fileID: 0}
+  refDirectionnalFilter: {fileID: 0}
 --- !u!212 &212503945077520740
 SpriteRenderer:
   m_ObjectHideFlags: 1
