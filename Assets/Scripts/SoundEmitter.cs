@@ -59,11 +59,6 @@ public class SoundEmitter : MonoBehaviour
         Emitters.Remove(this);
     }
 
-    public void OnEnable()
-    {
-        Source.maxDistance = float.MaxValue;
-    }
-
     public void Update()
     {
         if (RefDistanceFilter)
@@ -92,7 +87,7 @@ public class SoundEmitter : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-        Gizmos.color = Color.Lerp(Color.green, Color.red, Source.volume);
-        Gizmos.DrawWireSphere(transform.position, Source.maxDistance);
+        Gizmos.color = Color.Lerp(Color.green, Color.blue, Source.panStereo);
+        Gizmos.DrawWireSphere(transform.position, 0.05f);
     }
 }
