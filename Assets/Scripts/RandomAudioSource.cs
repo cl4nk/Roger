@@ -47,7 +47,7 @@ public class RandomAudioSource : MonoBehaviour
     public void OnEnable()
     {
         Source.clip = clips[Random.Range(0, clips.Length)];
-
+        Source.Play();
         if (Continous)
         {
             coroutine = StartCoroutine(ContinousCoroutine());
@@ -70,6 +70,8 @@ public class RandomAudioSource : MonoBehaviour
             if (!Source.isPlaying)
             {
                 Source.clip = clips[Random.Range(0, clips.Length)];
+                Source.Play();
+                Debug.Log("Clip changed");
             }
             yield return null;
         }
