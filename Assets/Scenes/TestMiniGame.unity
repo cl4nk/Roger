@@ -1037,7 +1037,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   messageToStart: 0
-  Debug: 1
+  Debug: 0
 --- !u!4 &1600033558
 Transform:
   m_ObjectHideFlags: 0
