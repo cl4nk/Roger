@@ -12,6 +12,9 @@ public class Checkpoint : MonoBehaviour {
 
     [SerializeField]
     private GameObject[] toDisable;
+    [SerializeField]
+    private GameObject[] toEnable;
+
 
     private Coroutine corout;
     [SerializeField]
@@ -71,6 +74,12 @@ public class Checkpoint : MonoBehaviour {
                     if (toDisable[i] != null)
                         Destroy(toDisable[i]);
                 }
+
+                for (int i = 0; i < toEnable.Length; i++)
+                {
+                    if (toEnable[i] != null)
+                        toEnable[i].SetActive(true);
+                }
                 Destroy(gameObject);
                 toCall.Invoke();
                 player.GetComponent<TranslationController>().enabled = true;
@@ -82,6 +91,11 @@ public class Checkpoint : MonoBehaviour {
                 {
                     if (toDisable[i] != null)
                         Destroy(toDisable[i]);
+                }
+                for (int i = 0; i < toEnable.Length; i++)
+                {
+                    if (toEnable[i] != null)
+                        toEnable[i].SetActive(true);
                 }
                 Destroy(gameObject);
                 toCall.Invoke();
