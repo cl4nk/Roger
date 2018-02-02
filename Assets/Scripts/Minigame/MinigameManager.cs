@@ -36,8 +36,8 @@ public class MinigameManager : Singleton<MinigameManager> {
     [SerializeField]
     private Transform answerLine;
 
-    public event Action OnGoodAnswer;
-    public event Action OnBadAnswer;
+    public UnityEvent OnGoodAnswer = new UnityEvent();
+    public UnityEvent OnBadAnswer = new UnityEvent();
 
     private int nbWord = 0;
     private int nbMaxWord;

@@ -4,7 +4,6 @@
 [RequireComponent(typeof(RandomAudioSource))]
 public class DetectSound : MonoBehaviour
 {
-
     public RandomAudioSource randomPlayer;
 
     public void OnEnable()

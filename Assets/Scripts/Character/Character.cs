@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class Character : MonoBehaviour, IDamageable
 {
-    public event Action OnDeathEvent;
+    public UnityEvent OnDeathEvent = new UnityEvent();
     public event Action<float> OnDamageTakenEvent;
 
     [SerializeField]

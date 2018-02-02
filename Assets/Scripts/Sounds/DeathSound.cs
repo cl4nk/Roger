@@ -6,11 +6,11 @@ public class DeathSound : MonoBehaviour
 {
     public void OnEnable()
     {
-        GetComponent<Character>().OnDeathEvent += GetComponent<RandomAudioSource>().Play;
+        GetComponent<Character>().OnDeathEvent.AddListener(GetComponent<RandomAudioSource>().Play);
     }
 
     public void OnDisable()
     {
-        GetComponent<Character>().OnDeathEvent -= GetComponent<RandomAudioSource>().Play;
+        GetComponent<Character>().OnDeathEvent.RemoveListener(GetComponent<RandomAudioSource>().Play);
     }
 }

@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
     {
         OnStateChanged += HandleStateChange;
         OnStepChanged += HandleStepChange;
-        Player.Instance.GetComponent<Character>().OnDeathEvent += GameOver;
+        Player.Instance.GetComponent<Character>().OnDeathEvent.AddListener(GameOver);
         CurrentStep = Step.Intro;
     }
 
@@ -60,7 +60,7 @@ public class GameManager : Singleton<GameManager>
     {
         OnStepChanged -= HandleStepChange;
         OnStateChanged -= HandleStateChange;
-        Player.Instance.GetComponent<Character>().OnDeathEvent -= GameOver;
+        Player.Instance.GetComponent<Character>().OnDeathEvent.RemoveListener(GameOver);
     }
 
     private void HandleStateChange(State state)

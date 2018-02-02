@@ -7,8 +7,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(AudioSource))]
 public class CallReceiver : MonoBehaviour {
 
-    public UnityEvent responseCallbacks;
-    public UnityEvent noResponseCallbacks;
+    public UnityEvent responseCallbacks = new UnityEvent();
+    public UnityEvent noResponseCallbacks = new UnityEvent();
 
 
     public AudioClip ringClip;

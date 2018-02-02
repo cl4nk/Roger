@@ -1,9 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class HideSpot : MonoBehaviour
 {
-    public event Action OnHidden;
+    public UnityEvent OnHidden = new UnityEvent();
 
     private bool IsHidden = false;
     private GameObject Player;
@@ -18,7 +18,7 @@ public class HideSpot : MonoBehaviour
             IsHidden = !IsHidden;
 
             if (OnHidden != null)
-                OnHidden();
+                OnHidden.Invoke();
         }
     }
 }

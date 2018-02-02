@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
-    public event Action OnArrive;
+    public UnityEvent OnArrive = new UnityEvent();
 
     [SerializeField]
     private Character player;
@@ -26,18 +26,11 @@ public class LevelManager : MonoBehaviour
     {
         lastCheckpoint = Player.transform.position;
 
-        Player.OnDeathEvent += RespawnPlayer;
-        FinishZone.OnArriveEvent += FinishZone_OnArriveEvent;
-        ;
+        Player.OnDeathEvent.AddListener(RespawnPlayer);
+        FinishZone.OnArriveEvent.AddListener(OnArrive.Invoke);
 
         VisualDetection.StaticOnPlayerDetected += OnPlayerDetected;
         ArrivalZone.StaticOnArriveEvent += SaveCheckpoint;
-    }
-
-    private void FinishZone_OnArriveEvent()
-    {
-        if (OnArrive != null)
-            OnArrive();
     }
 
     private void OnPlayerDetected(VisualDetection finder, Transform found)
@@ -53,8 +46,8 @@ public class LevelManager : MonoBehaviour
         ArrivalZone.StaticOnArriveEvent -= SaveCheckpoint;
         VisualDetection.StaticOnPlayerDetected -= OnPlayerDetected;
 
-        Player.OnDeathEvent -= RespawnPlayer;
-        FinishZone.OnArriveEvent -= FinishZone_OnArriveEvent;
+        Player.OnDeathEvent.RemoveListener(RespawnPlayer);
+        FinishZone.OnArriveEvent.RemoveListener(OnArrive.Invoke);
     }
 
     private void SaveCheckpoint(ArrivalZone zone)

@@ -52,7 +52,7 @@ public class PathFollowingAI : MonoBehaviour, IMoving
     {
         if (noiseDetection)
         {
-            noiseDetection.OnNoiseDetected += SetTempDestination;
+            noiseDetection.OnNoiseDetected -= SetTempDestination;
         }
     }
 

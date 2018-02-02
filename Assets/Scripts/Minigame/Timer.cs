@@ -1,13 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Timer : MonoBehaviour {
 
     [SerializeField]
     private float delay = 10.0f;
 
-    [SerializeField]
-    private event Action OnTimerFinished;
+    public UnityEvent OnTimerFinished = new UnityEvent();
 
     public float currDelay { get; private set; }
     private bool isRunning = true;

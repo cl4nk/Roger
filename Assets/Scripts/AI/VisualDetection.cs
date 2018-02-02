@@ -59,7 +59,7 @@ public class VisualDetection : MonoBehaviour
         {
 
             if (StaticOnPlayerDetected != null)
-                StaticOnPlayerDetected(this, Target);
+                StaticOnPlayerDetected.Invoke(this, Target);
 
             if (OnPlayerDetected != null)
                 OnPlayerDetected.Invoke(Target);

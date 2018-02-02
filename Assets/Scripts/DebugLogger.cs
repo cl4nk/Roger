@@ -7,14 +7,14 @@ public class DebugLogger : Singleton<DebugLogger>
 
     public void OnEnable()
     {
-        NoiseDetection.StaticOnNoiseDetected += this.NoiseDetection_StaticOnNoiseDetected;
+        NoiseDetection.StaticOnNoiseDetected += NoiseDetection_StaticOnNoiseDetected;
         VisualDetection.StaticOnPlayerDetected += VisualDetectionOnStaticOnPlayerDetected;
-        ArrivalZone.StaticOnArriveEvent += this.ArrivalZone_StaticOnArriveEvent;
+        ArrivalZone.StaticOnArriveEvent += ArrivalZone_StaticOnArriveEvent;
 
         if (Character)
         {
             Character.OnDamageTakenEvent += LogDamageTaken;
-            Character.OnDeathEvent += LogDeath;
+            Character.OnDeathEvent.AddListener(LogDeath);
 
         }
 
@@ -26,14 +26,14 @@ public class DebugLogger : Singleton<DebugLogger>
 
     public void OnDisable()
     {
-        NoiseDetection.StaticOnNoiseDetected -= this.NoiseDetection_StaticOnNoiseDetected;
+        NoiseDetection.StaticOnNoiseDetected -= NoiseDetection_StaticOnNoiseDetected;
         VisualDetection.StaticOnPlayerDetected -= VisualDetectionOnStaticOnPlayerDetected;
-        ArrivalZone.StaticOnArriveEvent -= this.ArrivalZone_StaticOnArriveEvent;
+        ArrivalZone.StaticOnArriveEvent -= ArrivalZone_StaticOnArriveEvent;
 
         if (Character)
         {
             Character.OnDamageTakenEvent -= LogDamageTaken;
-            Character.OnDeathEvent -= LogDeath;
+            Character.OnDeathEvent.RemoveListener(LogDeath);
 
         }
 

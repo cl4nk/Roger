@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+//TODO: Rework all code
 [RequireComponent(typeof(BoxCollider2D))]
 public class Checkpoint : MonoBehaviour {
 
@@ -15,13 +16,12 @@ public class Checkpoint : MonoBehaviour {
     [SerializeField]
     private GameObject[] toEnable;
 
-
     private Coroutine corout;
+
     [SerializeField]
     private float timeToPress = 1.0f;
 
-    [SerializeField]
-    private UnityEvent toCall;
+    public UnityEvent toCall = new UnityEvent();
 
     public AudioSource ambiant;
 
@@ -69,7 +69,7 @@ public class Checkpoint : MonoBehaviour {
 
         SceneManager.LoadScene("TestMiniGame", LoadSceneMode.Additive);
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => {
-            MinigameManager.Instance.OnGoodAnswer += (() => {
+            MinigameManager.Instance.OnGoodAnswer.AddListener(() => {
                 for (int i = 0; i < toDisable.Length; i++)
                 {
                     if (toDisable[i] != null)
@@ -87,7 +87,7 @@ public class Checkpoint : MonoBehaviour {
                 SceneManager.UnloadSceneAsync("TestMiniGame");
                 ambiant.outputAudioMixerGroup.audioMixer.SetFloat("Volume", -0.17f);
             });
-            MinigameManager.Instance.OnBadAnswer += (() => {
+            MinigameManager.Instance.OnBadAnswer.AddListener(() => {
                 for (int i = 0; i < toDisable.Length; i++)
                 {
                     if (toDisable[i] != null)

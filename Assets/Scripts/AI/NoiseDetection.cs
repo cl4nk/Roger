@@ -38,7 +38,7 @@ public class NoiseDetection : MonoBehaviour
                 if (detector.OnNoiseDetected != null)
                     detector.OnNoiseDetected.Invoke(position);
                 if (StaticOnNoiseDetected != null)
-                    StaticOnNoiseDetected(detector, position);
+                    StaticOnNoiseDetected.Invoke(detector, position);
             }
         }
     }
