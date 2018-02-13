@@ -3,7 +3,7 @@
 public class DebugLogger : Singleton<DebugLogger>
 {
     public Character Character;
-    public CommandController CommandController;
+    public StickCommands CommandController;
 
     public void OnEnable()
     {
@@ -16,11 +16,6 @@ public class DebugLogger : Singleton<DebugLogger>
             Character.OnDamageTakenEvent += LogDamageTaken;
             Character.OnDeathEvent.AddListener(LogDeath);
 
-        }
-
-        if (CommandController)
-        {
-            CommandController.OnCommandEvent += LogCommandChanged;
         }
     }
 
@@ -35,11 +30,6 @@ public class DebugLogger : Singleton<DebugLogger>
             Character.OnDamageTakenEvent -= LogDamageTaken;
             Character.OnDeathEvent.RemoveListener(LogDeath);
 
-        }
-
-        if (CommandController)
-        {
-            CommandController.OnCommandEvent -= LogCommandChanged;
         }
     }
 
@@ -66,10 +56,5 @@ public class DebugLogger : Singleton<DebugLogger>
     private void LogDeath()
     {
         Debug.Log(Character + " dead");
-    }
-
-    private void LogCommandChanged(int index)
-    {
-        Debug.Log("Command changed : " + index + CommandController);
     }
 }

@@ -28,7 +28,7 @@ public class FrequenceFilter : MonoBehaviour, ICommand
         get { return frequence; }
         set
         {
-            frequence = value;
+            frequence = Mathf.Clamp(value, MIN_FREQUENCE, MAX_FREQUENCE);
             HighFilter.cutoffFrequency = Mathf.Max(10.0f, frequence - Range);
             LowFilter.cutoffFrequency = Mathf.Min(22000.0f, frequence + Range);
         }
@@ -60,37 +60,15 @@ public class FrequenceFilter : MonoBehaviour, ICommand
         }
     }
 
-    public float Speed = 100.0f;
-    protected Vector2 LastInput = Vector2.zero;
+    public float VariationSpeed = 100.0f;
 
     public void OnEnable()
     {
         Range = range;
     }
 
-    public void OnCommandEnable()
+    public void OnUpdate(float value)
     {
-    }
-
-    public void OnCommandDisable()
-    {
-    }
-
-    public void EnterInputVector(Vector2 direction)
-    {
-        if (direction.sqrMagnitude == 0.0f)
-        {
-            LastInput = Vector2.zero;
-        }
-        else
-        {
-            Vector3 newDirection = direction.normalized;
-            if (LastInput.sqrMagnitude > 0.0f)
-            {
-                Frequence += Vector2.SignedAngle(LastInput, newDirection) * Time.deltaTime * -Speed;
-                Frequence = Mathf.Clamp(Frequence, MIN_FREQUENCE, MAX_FREQUENCE);
-            }
-            LastInput = newDirection;
-        }
+        Frequence += VariationSpeed * value * Time.deltaTime;
     }
 }

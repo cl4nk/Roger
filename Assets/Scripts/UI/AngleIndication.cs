@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(DirectionnalFilter))]
 public class AngleIndication : MonoBehaviour
 {
     private LineRenderer renderer;
@@ -29,8 +30,10 @@ public class AngleIndication : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        Vector3 direction = filter.Direction;
+
         Quaternion quaternion = Quaternion.Euler(0.0f, 0.0f, filter.Angle);
-        Vector3 first = transform.position + quaternion * transform.right;
+        Vector3 first = transform.position + quaternion * direction;
         first.z = -Depth;
         renderer.SetPosition(0, first);
 
@@ -39,7 +42,7 @@ public class AngleIndication : MonoBehaviour
         renderer.SetPosition(1, second);
 
         quaternion = Quaternion.Euler(0.0f, 0.0f, -filter.Angle);
-        Vector3 last = transform.position + quaternion * transform.right;
+        Vector3 last = transform.position + quaternion * direction;
         last.z = -Depth;
         renderer.SetPosition(2, last);
     }

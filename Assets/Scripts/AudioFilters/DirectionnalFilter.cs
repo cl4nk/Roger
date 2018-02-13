@@ -1,46 +1,37 @@
 ﻿using UnityEngine;
 
-public class DirectionnalFilter : MonoBehaviour, ICommand
+public class DirectionnalFilter : ADirectionnable, ICommand
 {
-    public float Angle = 10.0f;
+    public float MinAngle = 5f;
+    public float MaxAngle = 30f;
 
-    private Vector3 LastInput;
+    [SerializeField]
+    private float angle = 10.0f;
+    public float Angle
+    {
+        get { return angle; }
+        set
+        {
+            angle = Mathf.Clamp(value, MinAngle, MaxAngle);
+        }
+    }
+
+    public float VariationSpeed = 5f;
 
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
 
-        Quaternion quaternion = Quaternion.Euler(0.0f, 0.0f, Angle);
-        Gizmos.DrawRay(transform.position, quaternion * transform.right);
+        Quaternion quaternion = Quaternion.Euler(0.0f, Angle, 0.0f);
+        Gizmos.DrawRay(transform.position, quaternion * transform.forward);
 
-        quaternion = Quaternion.Euler(0.0f, 0.0f, -Angle);
+        quaternion = Quaternion.Euler(0.0f, -Angle, 0.0f);
 
-        Gizmos.DrawRay(transform.position, quaternion * transform.right);
+        Gizmos.DrawRay(transform.position, quaternion * transform.forward);
     }
 
-    public void OnCommandEnable()
+    public void OnUpdate(float value)
     {
-    }
-
-    public void OnCommandDisable()
-    {
-    }
-
-    public void EnterInputVector(Vector2 direction)
-    {
-        if (direction.sqrMagnitude == 0.0f)
-        {
-            LastInput = Vector2.zero;
-        }
-        else
-        {
-            Vector3 newDirection = direction.normalized;
-            if (LastInput.sqrMagnitude > 0.0f)
-            {
-                Angle += Vector2.SignedAngle(LastInput, newDirection) * Time.deltaTime * -Angle;
-                Angle = Mathf.Clamp(Angle, 0, 180);
-            }
-            LastInput = newDirection;
-        }
+        Angle = VariationSpeed * value * Time.deltaTime;
     }
 }

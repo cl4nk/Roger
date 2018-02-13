@@ -2,7 +2,5 @@
 
 public interface ICommand
 {
-    void OnCommandEnable();
-    void OnCommandDisable();
-    void EnterInputVector(Vector2 direction);
+    void OnUpdate(float value);
 }
