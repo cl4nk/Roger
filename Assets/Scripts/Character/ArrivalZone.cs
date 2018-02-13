@@ -1,8 +1,9 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Collider))]
 public class ArrivalZone : MonoBehaviour
 {
     public static event Action<ArrivalZone> StaticOnArriveEvent;
@@ -10,22 +11,8 @@ public class ArrivalZone : MonoBehaviour
 
     public bool OnlyOnce = false;
 
-    [SerializeField]
-    private Transform target;
-
-    public Transform Target
-    {
-        get
-        {
-            if (target == null)
-            {
-                target = Player.Instance.transform;
-            }
-            return target;
-        }
-    }
-
-    public float AcceptanceRadius = 1.0f;
+    public bool DetectByTag = true;
+    public string TagToDetect = "Player";
 
     private bool alreadyTriggered = false;
     public bool AlreadyTriggered
@@ -34,63 +21,43 @@ public class ArrivalZone : MonoBehaviour
         private set { alreadyTriggered = value; }
     }
 
-    private bool playerIsInZone = false;
-    public bool PlayerIsInZone
-    {
-        get { return playerIsInZone; }
-        private set { playerIsInZone = value; }
-    }
-
-    public bool CanBeTriggered
-    {
-        get
-        {
-            if (PlayerIsInZone)
-                return false;
-            return (OnlyOnce && !AlreadyTriggered) || !OnlyOnce;
-        }
-    }
+    private List<Collider> CollidersInZone = new List<Collider>();
 
     public void OnEnable()
     {
-        AlreadyTriggered = true;
-        PlayerIsInZone = false;
         OnArriveEvent.AddListener(OnArrive);
     }
 
     public void OnDisable()
     {
-        AlreadyTriggered = false;
         OnArriveEvent.RemoveListener(OnArrive);
     }
 
-    public void Update()
+    public void OnTriggerEnter(Collider other)
     {
-        if (Vector3.Distance(Target.position, transform.position) <= AcceptanceRadius)
+        if (OnlyOnce && AlreadyTriggered)
+            return;
+
+        if (DetectByTag && other.CompareTag(TagToDetect) || DetectByTag == false)
         {
-            if (CanBeTriggered)
-            {
-                if (StaticOnArriveEvent != null)
-                    StaticOnArriveEvent.Invoke(this);
-                if (OnArriveEvent != null)
-                    OnArriveEvent.Invoke();
-            }
+            CollidersInZone.Add(other);
+            OnArriveEvent.Invoke();
+            if (StaticOnArriveEvent != null)
+                StaticOnArriveEvent(this);
         }
-        else
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (CollidersInZone.Contains(other))
         {
-            PlayerIsInZone = false;
+            CollidersInZone.Remove(other);
         }
     }
 
     public void OnArrive()
     {
         AlreadyTriggered = true;
-        PlayerIsInZone = true;
     }
 
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, AcceptanceRadius);
-    }
 }

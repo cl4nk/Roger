@@ -1,10 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
 
-public class VisualDetection : MonoBehaviour
+public class VisualDetection : ADirectionnable
 {
     public static event Action<VisualDetection, Transform> StaticOnPlayerDetected;
 
@@ -15,6 +12,8 @@ public class VisualDetection : MonoBehaviour
 
     [Range(0, float.MaxValue)]
     public float Distance = 5.0f;
+
+    public LayerMask raycastMask;
 
     [SerializeField]
     private Transform target;
@@ -44,16 +43,12 @@ public class VisualDetection : MonoBehaviour
             return;
         }
 
-        float angle = Vector3.Angle(transform.right, directionToPlayer.normalized);
+        float angle = Vector3.Angle(Direction, directionToPlayer.normalized);
 
         if (angle > Angle)
             return;
 
-        int layerMask = 1 << LayerMask.NameToLayer("Wall");
-      
-      
-        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Target.position - transform.position, Vector2.Distance(Target.position, transform.position), layerMask);
-        
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Target.position - transform.position, Vector2.Distance(Target.position, transform.position), raycastMask);
 
         if (raycastHit.collider == null)
         {
@@ -72,7 +67,7 @@ public class VisualDetection : MonoBehaviour
         Gizmos.color = Color.blue;
 
         Quaternion quaternion = Quaternion.Euler(0.0f, 0.0f, Angle);
-        Vector3 direction = transform.right * Distance;
+        Vector3 direction = Direction * Distance;
         Gizmos.DrawRay(transform.position, quaternion * direction);
 
         quaternion = Quaternion.Euler(0.0f, 0.0f, -Angle);
@@ -81,10 +76,5 @@ public class VisualDetection : MonoBehaviour
 
         Gizmos.DrawRay(transform.position, direction);
 
-    }
-
-    public void Test()
-    {
-        SceneManager.LoadScene("Test3C");
     }
 }

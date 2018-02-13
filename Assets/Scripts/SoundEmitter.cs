@@ -70,7 +70,7 @@ public class SoundEmitter : MonoBehaviour
         {
             Vector3 direction = transform.position - RefDirectionnalFilter.transform.position;
 
-            float angle = Vector3.Angle(RefDirectionnalFilter.transform.right,
+            float angle = Vector3.Angle(RefDirectionnalFilter.Direction,
                 direction);
 
             if (angle > RefDirectionnalFilter.Angle)
@@ -79,7 +79,7 @@ public class SoundEmitter : MonoBehaviour
             }
             else
             {
-                angle *= Mathf.Sign(Vector3.Dot(RefDirectionnalFilter.transform.right, direction)) * -1;
+                angle *= Mathf.Sign(Vector3.Dot(RefDirectionnalFilter.Direction, direction)) * -1;
                 Source.panStereo = angle / RefDirectionnalFilter.Angle;
             }
         }

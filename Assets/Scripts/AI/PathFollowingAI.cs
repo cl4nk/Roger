@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PathFollowingAI : MonoBehaviour, IMoving
+public class PathFollowingAI : ADirectionnable, IMoving
 {
     [SerializeField]
     private Transform refTransform;
@@ -85,9 +85,7 @@ public class PathFollowingAI : MonoBehaviour, IMoving
 
         transform.position += (direction * Time.deltaTime * speed);
 
-        //direction = new Vector3(direction.y, -direction.x);
-
-        float angle = Vector3.Angle(Vector3.right, direction);
+        float angle = Vector3.Angle(localDirection, direction);
         RefTransform.localRotation = Quaternion.Slerp(RefTransform.localRotation, Quaternion.Euler(0, 0, angle * Mathf.Sign(direction.y)), rotationSpeed * Time.deltaTime);
 
         if (HasReachDestination())

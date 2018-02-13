@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TranslationController : MonoBehaviour, IMoving
+public class TranslationController : ADirectionnable, IMoving
 {
 
     #region Fields
@@ -19,7 +19,7 @@ public class TranslationController : MonoBehaviour, IMoving
 
     public bool GoLeft { get; private set; }
 
-	void FixedUpdate ()
+    void FixedUpdate ()
     {
         Translation();
 	}
@@ -29,9 +29,11 @@ public class TranslationController : MonoBehaviour, IMoving
         float verticalTranslation = (Input.GetAxis(verticalTranslationAxis));
         float horizontalTranslation = (Input.GetAxis(horizontalTranslationAxis));
 
-        Vector3 translation = new Vector3(horizontalTranslation, verticalTranslation);
+        Vector3 translation = new Vector3(horizontalTranslation, 0.0f, verticalTranslation);
 
-        GoLeft = Vector3.Angle(translation, Vector3.left) < 90.0f;
+        translation = Vector3.ClampMagnitude(translation, 1.0f);
+
+        GoLeft = Vector3.Angle(translation, localDirection) < 90.0f;
 
         isMoving = translation.sqrMagnitude != 0.0f;
 
