@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class TranslationController : ADirectionnable, IMoving
 {
-
     #region Fields
     [SerializeField]
     private string verticalTranslationAxis = "Vertical";
@@ -12,6 +12,19 @@ public class TranslationController : ADirectionnable, IMoving
 
     [SerializeField]
     private float moveSpeed = 5f;
+
+    private Rigidbody rigidbody;
+    public Rigidbody Rigidbody
+    {
+        get
+        {
+            if (rigidbody == null)
+            {
+                rigidbody = GetComponent<Rigidbody>();
+            }
+            return rigidbody;
+        }
+    }
 
     #endregion
 
@@ -39,7 +52,7 @@ public class TranslationController : ADirectionnable, IMoving
 
         translation *= moveSpeed * Time.deltaTime;
 
-        transform.Translate(translation);
+        Rigidbody.AddRelativeForce(translation);
     }
 
     public bool IsMoving()
