@@ -52,7 +52,10 @@ public class TranslationController : ADirectionnable, IMoving
 
         translation *= moveSpeed * Time.deltaTime;
 
-        Rigidbody.AddRelativeForce(translation);
+        Vector3 velocity = transform.TransformDirection(translation);
+        velocity.y = Rigidbody.velocity.y;
+
+        Rigidbody.velocity = velocity;
     }
 
     public bool IsMoving()
