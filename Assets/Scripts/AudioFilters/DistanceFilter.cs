@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class DistanceFilter : MonoBehaviour, ICommand
 {
@@ -28,9 +29,8 @@ public class DistanceFilter : MonoBehaviour, ICommand
 
     public void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-
-        Gizmos.DrawWireSphere(transform.position, CurrentDistance);
+        Handles.color = new Color(1, 0, 1, 0.2f);
+        Handles.DrawSolidDisc(transform.position, transform.up, CurrentDistance);
     }
 
     public float GetVolume(Vector3 position)

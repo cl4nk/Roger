@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class DirectionnalFilter : ADirectionnable, ICommand
 {
@@ -20,14 +21,10 @@ public class DirectionnalFilter : ADirectionnable, ICommand
 
     public void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        Vector3 endpoint = transform.position + (Quaternion.Euler(0, -Angle * 0.5f, 0) * transform.forward);
 
-        Quaternion quaternion = Quaternion.Euler(0.0f, Angle, 0.0f);
-        Gizmos.DrawRay(transform.position, quaternion * transform.forward);
-
-        quaternion = Quaternion.Euler(0.0f, -Angle, 0.0f);
-
-        Gizmos.DrawRay(transform.position, quaternion * transform.forward);
+        Handles.color = new Color(1, 0.92f, 0.016f, 0.2f);
+        Handles.DrawSolidArc(transform.position, transform.up, (endpoint - transform.position).normalized, Angle, 10.0f);
     }
 
     public void OnUpdate(float value)

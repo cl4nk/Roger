@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 public class VisualDetection : ADirectionnable
@@ -64,17 +65,9 @@ public class VisualDetection : ADirectionnable
 
     public void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        Vector3 endpoint = transform.position + (Quaternion.Euler(0, -Angle * 0.5f, 0) * transform.forward);
 
-        Quaternion quaternion = Quaternion.Euler(0.0f, 0.0f, Angle);
-        Vector3 direction = Direction * Distance;
-        Gizmos.DrawRay(transform.position, quaternion * direction);
-
-        quaternion = Quaternion.Euler(0.0f, 0.0f, -Angle);
-
-        Gizmos.DrawRay(transform.position, quaternion * direction);
-
-        Gizmos.DrawRay(transform.position, direction);
-
+        Handles.color = new Color(0, 0, 1, 0.2f);
+        Handles.DrawSolidArc(transform.position, transform.up, (endpoint - transform.position).normalized, Angle, Distance);
     }
 }
